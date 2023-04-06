@@ -12,6 +12,7 @@ import org.android.go.sopt.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
+    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,14 @@ class SignUpActivity : AppCompatActivity() {
         binding.root.setOnClickListener {
             hideKeyboard(this)
         }
+
+        //
+        keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
+            onShowKeyboard = { keyboardHeight ->
+                binding.svSignUp.run {
+                    smoothScrollTo(scrollX, scrollY + keyboardHeight)
+                }
+            })
     }
 
     private fun hideKeyboard(activity: Activity){
