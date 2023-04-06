@@ -2,12 +2,16 @@
 
 ## 과제 링크 제출란
 심화과제 노션 링크 :
-https://www.notion.so/marchbreeze/Week-1-_-UX-54c2d1ce84c34ec0aa733841a24a8750
+https://marchbreeze.notion.site/Week-1-_-UX-54c2d1ce84c34ec0aa733841a24a8750
+도전과제 노션 링크 :
+https://marchbreeze.notion.site/Week-1-_-cc5a58e69def4e0685f9d32051295d4f
 
 ## 템플릿 설명
 레포지터리에는 총 2개의 브랜치가 있습니다.
+
 ### main
 가장 기본이 되는 브랜치입니다. 새로운 연습 환경을 만들고자 할때 이 브랜치에서 새로운 브랜치를 파셔서 만드시면 됩니다.
+
 ### develop
 여러분의 대부분의 과제는 이 브랜치에서 이뤄지게 될 것입니다.
 

@@ -27,7 +27,7 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.etSignUpName.text.toString()
             val skill = binding.etSignUpSkill.text.toString()
 
-            // 로그인 조건 설정
+            // 로그인 조건 설정 후 가입 마무리
             if (id.length in 6..10 && pw.length in 8..12) {
                 Log.d("sangho", "able to signup")
 
