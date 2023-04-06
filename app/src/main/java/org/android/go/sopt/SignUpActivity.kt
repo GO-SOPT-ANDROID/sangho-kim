@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
             hideKeyboard(this)
         }
 
-        //
+        // 받아온 클래스 활용해 스크롤뷰에 적용
         keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
             onShowKeyboard = { keyboardHeight ->
                 binding.svSignUp.run {
