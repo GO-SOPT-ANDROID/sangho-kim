@@ -1,10 +1,14 @@
 package org.android.go.sopt
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethod
+import android.view.inputmethod.InputMethodManager
+import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -82,5 +86,15 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        // 화면 터치로 키보드 내리기
+        binding.root.setOnClickListener {
+            hideKeyboard(this)
+        }
+    }
+
+    private fun hideKeyboard(activity: Activity){
+        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
     }
 }
