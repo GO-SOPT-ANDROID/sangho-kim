@@ -1,16 +1,17 @@
-package org.android.go.sopt
+package org.android.go.sopt.playlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.databinding.ActivityMainBinding
+import org.android.go.sopt.R
+import org.android.go.sopt.databinding.ActivityPlaylistBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class PlaylistActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPlaylistBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityPlaylistBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)

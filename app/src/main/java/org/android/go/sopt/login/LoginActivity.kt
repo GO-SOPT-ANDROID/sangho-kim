@@ -1,4 +1,4 @@
-package org.android.go.sopt
+package org.android.go.sopt.login
 
 import android.app.Activity
 import android.content.Context
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
