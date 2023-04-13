@@ -30,8 +30,10 @@ class PlaylistActivity : AppCompatActivity() {
             }
             true
         }
+
         binding.bnvMain.setOnItemReselectedListener { item ->
             if (item.itemId == R.id.menu_home) {
+                // 뷰 바인딩으로 바꿔볼 방법 생각해보기
                 val recyclerView = findViewById<RecyclerView>(R.id.rv_playlist)
                 recyclerView.smoothScrollToPosition(0)
             }

@@ -25,11 +25,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val playlistTitleAdapter = PlaylistTitleAdapter(requireContext())
-        playlistTitleAdapter.setItemList(mockPlayListTitle)
+        val playlistTitleAdapter = PlaylistTitleAdapter()
+        playlistTitleAdapter.submitList(mockPlayListTitle)
 
-        val playlistAdapter = PlaylistAdapter(requireContext())
-        playlistAdapter.setItemList(mockPlayList)
+        val playlistAdapter = PlaylistAdapter()
+        playlistAdapter.submitList(mockPlayList)
 
         val adapter = ConcatAdapter(playlistTitleAdapter, playlistAdapter)
         binding.rvPlaylist.adapter = adapter
