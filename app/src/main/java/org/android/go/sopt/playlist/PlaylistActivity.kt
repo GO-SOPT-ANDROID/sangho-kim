@@ -17,9 +17,7 @@ class PlaylistActivity : AppCompatActivity() {
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)
         if (currentFragment == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fcv_main, HomeFragment())
-                .commit()
+            supportFragmentManager.beginTransaction().add(R.id.fcv_main, HomeFragment()).commit()
         }
 
         binding.bnvMain.setOnItemSelectedListener { item ->
@@ -41,9 +39,6 @@ class PlaylistActivity : AppCompatActivity() {
     }
 
     private fun changeFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_main, fragment)
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fcv_main, fragment).commit()
     }
 }

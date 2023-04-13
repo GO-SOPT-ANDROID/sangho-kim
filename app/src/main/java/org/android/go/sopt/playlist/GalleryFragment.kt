@@ -10,7 +10,7 @@ import org.android.go.sopt.databinding.FragmentGalleryBinding
 class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding: FragmentGalleryBinding
-        get() = requireNotNull(_binding) {  "${this::class.java.simpleName}에서 에러가 발생했습니다." }
+        get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
         inflater: LayoutInflater,
