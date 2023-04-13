@@ -22,16 +22,9 @@
     <string name="snackbar_cant_login">회원가입 정보와 일치하지 않습니다.</string>
     <string name="toast_auto_login">자동 로그인에 성공하였습니다.</string>
     <string name="snackbar_sign_up_rule">조건에 맞추어 작성해주세요.</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="menu_item_home">홈</string>
     <string name="menu_item_search">검색</string>
     <string name="menu_item_gallery">갤러리</string>
+    <string name="playlist_title">상호의 플레이리스트</string>
 </resources>

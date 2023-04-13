@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ConcatAdapter
 import org.android.go.sopt.databinding.FragmentHomeBinding
 
 class HomeFragment: Fragment() {
@@ -23,12 +24,15 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 대부분의 로직은 여기에 구현
 
-        // requireContext : null 안되는 context로 반환
-        val adapter = PlaylistAdapter(requireContext())
+        val playlistTitleAdapter = PlaylistTitleAdapter(requireContext())
+        playlistTitleAdapter.setItemList(mockPlayListTitle)
+
+        val playlistAdapter = PlaylistAdapter(requireContext())
+        playlistAdapter.setItemList(mockPlayList)
+
+        val adapter = ConcatAdapter(playlistTitleAdapter, playlistAdapter)
         binding.rvPlaylist.adapter = adapter
-        adapter.setItemList(mockPlayList)
     }
 
     override fun onDestroyView() {
