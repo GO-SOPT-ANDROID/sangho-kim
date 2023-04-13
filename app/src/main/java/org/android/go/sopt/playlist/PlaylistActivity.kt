@@ -3,6 +3,7 @@ package org.android.go.sopt.playlist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityPlaylistBinding
 
@@ -23,11 +24,17 @@ class PlaylistActivity : AppCompatActivity() {
 
         binding.bnvMain.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_home -> {changeFragment(HomeFragment())}
+                R.id.menu_home -> changeFragment(HomeFragment())
                 R.id.menu_search -> changeFragment(SearchFragment())
                 R.id.menu_gallery -> changeFragment(GalleryFragment())
             }
             true
+        }
+        binding.bnvMain.setOnItemReselectedListener { item ->
+            if (item.itemId == R.id.menu_home) {
+                val recyclerView = findViewById<RecyclerView>(R.id.rv_playlist)
+                recyclerView.smoothScrollToPosition(0)
+            }
         }
     }
 
