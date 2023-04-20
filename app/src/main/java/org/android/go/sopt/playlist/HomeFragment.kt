@@ -1,6 +1,7 @@
 package org.android.go.sopt.playlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,13 @@ class HomeFragment : Fragment() {
 
         val adapter = ConcatAdapter(playlistTitleAdapter, playlistAdapter)
         binding.rvPlaylist.adapter = adapter
+
+        binding.btnItemDelete.setOnClickListener {
+            val updatedList = mockPlayList.filterNot {
+                it.id in playlistAdapter.selectionList
+            }
+            playlistAdapter.submitList(updatedList)
+        }
     }
 
     override fun onDestroyView() {

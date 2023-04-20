@@ -27,4 +27,5 @@
     <string name="menu_item_search">검색</string>
     <string name="menu_item_gallery">갤러리</string>
     <string name="playlist_title">상호의 플레이리스트</string>
+    <string name="btn_delete">DELETE</string>
 </resources>
