@@ -1,7 +1,7 @@
 ---
 name: "[ Week # ] 필수, 심화, 도전 과제 "
 about: "#주차 과제 정리"
-title: " "
+title: " [ Week # ] 필수, 심화, 도전 과제 "
 labels: ''
 assignees: ''
 
