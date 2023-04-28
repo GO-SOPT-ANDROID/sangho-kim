@@ -1,11 +1,11 @@
-### 리드미는 주로 블로그, 노션 제출 과제의 링크를 첨부하는데 써주시면 됩니다. 그 외엔 자유롭게 이용해주세요 !
 
-## 과제 링크 제출란
-과제 내용 공부 & 기록된 노션 :
-https://marchbreeze.notion.site/Kotlin-_-SOPT-e56e3b4f93c24a5292ebe95c3d2fd12c
+🍀 과제 총정리 노션 : [Marchbreeze](https://marchbreeze.notion.site/Kotlin-_-SOPT-e56e3b4f93c24a5292ebe95c3d2fd12c) 🍀
 
-1차 - 필수, 심화, 도전 과제
-2차 - 
+### 과제 현황
+1차 - 필수, 심화, 도전
+2차 - 필수, 심화
+
+---
 
 ## 템플릿 설명
 레포지터리에는 총 2개의 브랜치가 있습니다.
