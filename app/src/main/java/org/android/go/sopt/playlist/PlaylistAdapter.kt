@@ -6,8 +6,12 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
+import org.android.go.sopt.util.ItemDiffCallback
 
-class PlaylistAdapter : ListAdapter<PlaylistSong, PlaylistViewHolder>(PlaylistDiffCallback) {
+class PlaylistAdapter : ListAdapter< PlaylistSong, PlaylistViewHolder>(ItemDiffCallback<PlaylistSong>(
+    onContentsTheSame = { old, new -> old == new },
+    onItemsTheSame = { old, new -> old == new }
+)) {
 
     val selectionList = mutableListOf<Int>()
 

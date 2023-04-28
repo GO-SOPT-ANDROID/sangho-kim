@@ -15,10 +15,8 @@ class PlaylistActivity : AppCompatActivity() {
         binding = ActivityPlaylistBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)
-        if (currentFragment == null) {
-            supportFragmentManager.beginTransaction().add(R.id.fcv_main, HomeFragment()).commit()
-        }
+        supportFragmentManager.findFragmentById(R.id.fcv_main)
+            ?: supportFragmentManager.beginTransaction().add(R.id.fcv_main, HomeFragment()).commit()
 
         binding.bnvMain.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -31,7 +29,7 @@ class PlaylistActivity : AppCompatActivity() {
 
         binding.bnvMain.setOnItemReselectedListener { item ->
             if (item.itemId == R.id.menu_home) {
-                // 뷰 바인딩으로 바꿔볼 방법 생각해보기
+
                 val recyclerView = findViewById<RecyclerView>(R.id.rv_playlist)
                 recyclerView.smoothScrollToPosition(0)
             }

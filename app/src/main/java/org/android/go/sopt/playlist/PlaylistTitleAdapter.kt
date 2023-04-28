@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.databinding.ItemPlaylistTitleBinding
+import org.android.go.sopt.util.ItemDiffCallback
 
 class PlaylistTitleAdapter :
-    ListAdapter<PlaylistTitle, PlaylistTitleViewHolder>(PlaylistTitleDiffCallback) {
+    ListAdapter< PlaylistTitle, PlaylistTitleViewHolder>(ItemDiffCallback<PlaylistTitle>(
+        onContentsTheSame = { old, new -> old == new },
+        onItemsTheSame = { old, new -> old == new }
+    )) {
 
     private var itemList: List<PlaylistTitle> = emptyList()
 
