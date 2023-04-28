@@ -5,7 +5,4 @@ import org.android.go.sopt.databinding.ItemPlaylistTitleBinding
 
 class PlaylistTitleViewHolder(private val binding: ItemPlaylistTitleBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun onBind(item: PlaylistTitle) {
-        binding.tvPlaylistTitle.text = item.title
-    }
 }

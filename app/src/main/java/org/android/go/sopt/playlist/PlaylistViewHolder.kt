@@ -12,5 +12,6 @@ class PlaylistViewHolder(private val binding: ItemPlaylistSongBinding) :
         binding.ivAlbum.setImageDrawable(binding.root.context.getDrawable(item.album))
         binding.tvArtist.text = item.artist
         binding.tvTitle.text = item.title
+
     }
 }
