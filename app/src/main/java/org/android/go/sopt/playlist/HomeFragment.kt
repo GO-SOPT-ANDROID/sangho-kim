@@ -35,11 +35,14 @@ class HomeFragment : Fragment() {
         val adapter = ConcatAdapter(playlistTitleAdapter, playlistAdapter)
         binding.rvPlaylist.adapter = adapter
 
+        var updatedList = mockPlayList
+
         binding.btnItemDelete.setOnClickListener {
-            val updatedList = mockPlayList.filterNot {
+            updatedList = updatedList.filterNot {
                 it.id in playlistAdapter.selectionList
             }
             playlistAdapter.submitList(updatedList)
+            playlistAdapter.selectionList = mutableListOf<Int>()
         }
     }
 

@@ -13,7 +13,7 @@ class PlaylistAdapter : ListAdapter< PlaylistSong, PlaylistViewHolder>(ItemDiffC
     onItemsTheSame = { old, new -> old == new }
 )) {
 
-    val selectionList = mutableListOf<Int>()
+    var selectionList = mutableListOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {
         val binding: ItemPlaylistSongBinding =
@@ -23,12 +23,11 @@ class PlaylistAdapter : ListAdapter< PlaylistSong, PlaylistViewHolder>(ItemDiffC
 
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         holder.onBind(getItem(position))
-
         holder.chkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                selectionList.add(getItem(position).id)
+                selectionList.add(position)
             } else {
-                selectionList.remove(getItem(position).id)
+                selectionList.remove(position)
             }
         }
     }
