@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
-class PlaylistAdapter : ListAdapter< PlaylistSong, PlaylistViewHolder>(ItemDiffCallback<PlaylistSong>(
-    onContentsTheSame = { old, new -> old == new },
-    onItemsTheSame = { old, new -> old == new }
-)) {
+class PlaylistAdapter :
+    ListAdapter<PlaylistSong, PlaylistViewHolder>(
+        ItemDiffCallback<PlaylistSong>(onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old == new })
+    ) {
 
     var selectionList = mutableListOf<Int>()
 

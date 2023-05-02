@@ -29,9 +29,11 @@ class PlaylistActivity : AppCompatActivity() {
 
         binding.bnvMain.setOnItemReselectedListener { item ->
             if (item.itemId == R.id.menu_home) {
-
-                when (val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)) {
-                    is HomeFragment -> { currentFragment.scrollToTop() }
+                when (val currentFragment =
+                    supportFragmentManager.findFragmentById(R.id.fcv_main)) {
+                    is HomeFragment -> {
+                        currentFragment.scrollToTop()
+                    }
                 }
             }
         }

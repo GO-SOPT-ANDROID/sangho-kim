@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     fun scrollToTop() {
         binding.rvPlaylist.smoothScrollToPosition(0)
     }
