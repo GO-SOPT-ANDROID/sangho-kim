@@ -30,8 +30,9 @@ class PlaylistActivity : AppCompatActivity() {
         binding.bnvMain.setOnItemReselectedListener { item ->
             if (item.itemId == R.id.menu_home) {
 
-                val recyclerView = findViewById<RecyclerView>(R.id.rv_playlist)
-                recyclerView.smoothScrollToPosition(0)
+                when (val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)) {
+                    is HomeFragment -> { currentFragment.scrollToTop() }
+                }
             }
         }
     }
