@@ -22,4 +22,10 @@
     <string name="snackbar_cant_login">회원가입 정보와 일치하지 않습니다.</string>
     <string name="toast_auto_login">자동 로그인에 성공하였습니다.</string>
     <string name="snackbar_sign_up_rule">조건에 맞추어 작성해주세요.</string>
+
+    <string name="menu_item_home">홈</string>
+    <string name="menu_item_search">검색</string>
+    <string name="menu_item_gallery">갤러리</string>
+    <string name="playlist_title">상호의 플레이리스트</string>
+    <string name="btn_delete">DELETE</string>
 </resources>

@@ -1,4 +1,4 @@
-package org.android.go.sopt
+package org.android.go.sopt.login
 
 import android.app.Activity
 import android.content.Context
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {

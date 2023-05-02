@@ -1,4 +1,4 @@
-package org.android.go.sopt
+package org.android.go.sopt.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
