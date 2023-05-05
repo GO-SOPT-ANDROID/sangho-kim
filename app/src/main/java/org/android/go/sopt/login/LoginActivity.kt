@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -93,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.root,
                 getString(R.string.snackbar_cant_login),
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
         }
     }
 
@@ -106,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.root,
                         getString(R.string.snackbar_sign_up),
                         Snackbar.LENGTH_SHORT
-                    ).show()
+                    ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
 
                     // 전달 받은 result 데이터의 String 가져옴
                     id = result.data?.getStringExtra("id") ?: ""
