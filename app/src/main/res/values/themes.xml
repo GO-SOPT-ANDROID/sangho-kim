@@ -16,5 +16,34 @@
         <item name="colorOnBackground">@color/black</item>
         <item name="colorSurface">@color/light_blue_100</item>
         <item name="colorOnSurface">@color/light_blue_900</item>
+        <!--Font theme-->
+        <item name="android:textViewStyle">@style/TextAppearance.Pretendard</item>
+        <item name="android:buttonStyle">@style/TextAppearance.Pretendard</item>
+        <item name="android:editTextStyle">@style/TextAppearance.Pretendard</item>
+        <item name="android:radioButtonStyle">@style/TextAppearance.Pretendard</item>
+        <item name="android:checkboxStyle">@style/TextAppearance.Pretendard</item>
+    </style>
+
+    <!--Font theme-->
+    <style name="TextAppearance.Pretendard" parent="">
+        <item name="android:fontFamily">@font/pretendard_font</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextAppearance.Pretendard.Title" parent="TextAppearance.Pretendard">
+        <item name="android:fontWeight">700</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Pretendard.Normal" parent="TextAppearance.Pretendard">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.Pretendard.Normal.Bold" parent="TextAppearance.Pretendard">
+        <item name="android:fontWeight">700</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

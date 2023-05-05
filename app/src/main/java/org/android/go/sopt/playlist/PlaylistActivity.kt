@@ -3,7 +3,6 @@ package org.android.go.sopt.playlist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityPlaylistBinding
 
