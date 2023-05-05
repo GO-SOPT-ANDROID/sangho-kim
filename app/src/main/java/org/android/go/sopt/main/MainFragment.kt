@@ -1,15 +1,15 @@
-package org.android.go.sopt.account
+package org.android.go.sopt.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.databinding.FragmentGalleryBinding
+import org.android.go.sopt.databinding.FragmentMainBinding
 
-class GalleryFragment : Fragment() {
-    private var _binding: FragmentGalleryBinding? = null
-    private val binding: FragmentGalleryBinding
+class MainFragment : Fragment() {
+    private var _binding: FragmentMainBinding? = null
+    private val binding: FragmentMainBinding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 

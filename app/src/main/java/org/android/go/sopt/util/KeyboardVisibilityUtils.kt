@@ -1,4 +1,4 @@
-package org.android.go.sopt.login
+package org.android.go.sopt.util
 
 import android.graphics.Rect
 import android.view.ViewTreeObserver

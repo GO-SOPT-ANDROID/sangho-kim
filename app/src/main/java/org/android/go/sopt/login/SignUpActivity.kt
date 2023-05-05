@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
+import org.android.go.sopt.util.KeyboardVisibilityUtils
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
