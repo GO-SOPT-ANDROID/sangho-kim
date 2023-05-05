@@ -1,11 +1,17 @@
 package org.android.go.sopt.account
 
+import android.content.Context.MODE_PRIVATE
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.databinding.FragmentAccountBinding
+import org.android.go.sopt.login.LoginActivity
+
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding: FragmentAccountBinding
@@ -22,7 +28,30 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 대부분의 로직은 여기에 구현
+
+        binding.btnLogout.setOnClickListener {
+            // 알림 제어할 이벤트핸들러 설정
+            val alertEventHandler = DialogInterface.OnClickListener { _, click ->
+                if (click == DialogInterface.BUTTON_POSITIVE) {
+
+                    val sharedPreferences = context?.getSharedPreferences("loginInfo", MODE_PRIVATE)
+                    val editor = sharedPreferences?.edit()
+                    editor?.clear()
+                    editor?.apply()
+
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+            }
+            // 알림 빌더 생성
+            AlertDialog.Builder(this.requireContext()).run {
+                setMessage("로그아웃 하시겠습니까?")
+                setPositiveButton("YES", alertEventHandler)
+                setNegativeButton("NO", alertEventHandler)
+                show()
+            }
+        }
     }
 
     override fun onDestroyView() {
