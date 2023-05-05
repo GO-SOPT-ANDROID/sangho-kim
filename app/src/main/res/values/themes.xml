@@ -17,13 +17,4 @@
         <item name="colorSurface">@color/light_blue_100</item>
         <item name="colorOnSurface">@color/light_blue_900</item>
     </style>
-
-    <style name="Theme.GOSOPTAndroid.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.GOSOPTAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.GOSOPTAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
