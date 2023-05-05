@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.R
+import org.android.go.sopt.account.GalleryFragment
 import org.android.go.sopt.databinding.ActivityPlaylistBinding
+import org.android.go.sopt.main.SearchFragment
 
 class PlaylistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlaylistBinding
@@ -19,15 +21,15 @@ class PlaylistActivity : AppCompatActivity() {
 
         binding.bnvMain.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_home -> changeFragment(HomeFragment())
-                R.id.menu_search -> changeFragment(SearchFragment())
-                R.id.menu_gallery -> changeFragment(GalleryFragment())
+                R.id.menu_playlist -> changeFragment(HomeFragment())
+                R.id.menu_main -> changeFragment(SearchFragment())
+                R.id.menu_account -> changeFragment(GalleryFragment())
             }
             true
         }
 
         binding.bnvMain.setOnItemReselectedListener { item ->
-            if (item.itemId == R.id.menu_home) {
+            if (item.itemId == R.id.menu_playlist) {
                 when (val currentFragment =
                     supportFragmentManager.findFragmentById(R.id.fcv_main)) {
                     is HomeFragment -> {
