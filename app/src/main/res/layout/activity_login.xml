@@ -77,6 +77,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
+        android:padding="24dp"
         android:text="@string/login_btn_login"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
