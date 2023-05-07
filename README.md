@@ -2,8 +2,10 @@
 🍀 과제 총정리 노션 : [Marchbreeze](https://marchbreeze.notion.site/Kotlin-_-SOPT-e56e3b4f93c24a5292ebe95c3d2fd12c) 🍀
 
 ### 과제 현황
-1차 - 필수, 심화, 도전
-2차 - 필수, 심화
+
+1차 - 필수, 심화, 도전  
+2차 - 필수, 심화  
+3차 - 필수, 심화, 도전
 
 ---
 

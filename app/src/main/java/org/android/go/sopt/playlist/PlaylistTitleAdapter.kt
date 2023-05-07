@@ -13,8 +13,6 @@ class PlaylistTitleAdapter() :
         onItemsTheSame = { old, new -> old == new }
     )) {
 
-    private var itemList: List<PlaylistTitle> = emptyList()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistTitleViewHolder {
         val binding: ItemPlaylistTitleBinding =
             ItemPlaylistTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)

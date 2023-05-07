@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".playlist.PlaylistActivity">
+    tools:context=".main.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcv_main"
@@ -14,12 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_list" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
         android:layout_width="0dp"
         android:layout_height="56dp"
+        android:background="?attr/colorSurface"
+        app:itemIconTint="@drawable/bnv_selector_color"
+        app:itemRippleColor="@color/light_blue_200"
+        app:itemTextColor="@drawable/bnv_selector_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

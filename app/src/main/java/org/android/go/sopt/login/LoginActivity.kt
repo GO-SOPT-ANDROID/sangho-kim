@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -13,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
+import org.android.go.sopt.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -68,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
         // 로그인 조건 확인
         if (idEntered == id && pwEntered == pw) {
 
-            val intent = Intent(this, MyPageActivity::class.java).apply {
+            val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("id", id)
                 putExtra("pw", pw)
                 putExtra("name", name)
@@ -91,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.root,
                 getString(R.string.snackbar_cant_login),
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
         }
     }
 
@@ -104,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.root,
                         getString(R.string.snackbar_sign_up),
                         Snackbar.LENGTH_SHORT
-                    ).show()
+                    ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
 
                     // 전달 받은 result 데이터의 String 가져옴
                     id = result.data?.getStringExtra("id") ?: ""
@@ -119,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
         val idShared = sharedPreferences.getString("id", null)
         val pwShared = sharedPreferences.getString("pw", null)
         if (idShared != null && pwShared != null) {
-            val intent = Intent(this, MyPageActivity::class.java).apply {
+            val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("id", idShared)
                 putExtra("pw", pwShared)
             }

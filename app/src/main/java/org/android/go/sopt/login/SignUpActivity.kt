@@ -3,12 +3,14 @@ package org.android.go.sopt.login
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
+import org.android.go.sopt.util.KeyboardVisibilityUtils
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -23,7 +25,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignUp.setOnClickListener {
             signInByRule()
         }
-        
+
         // 화면 터치로 키보드 내리기
         binding.root.setOnClickListener {
             hideKeyboard(this)
@@ -66,7 +68,7 @@ class SignUpActivity : AppCompatActivity() {
                 binding.root,
                 getString(R.string.snackbar_sign_up_rule),
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
         }
     }
 }

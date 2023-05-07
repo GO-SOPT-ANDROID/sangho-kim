@@ -1,9 +1,7 @@
 package org.android.go.sopt.playlist
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 import org.android.go.sopt.util.ItemDiffCallback

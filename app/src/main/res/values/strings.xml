@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GO SOPT Android</string>
     <string name="textview_1">TextView 1</string>
-    <string name="login_title">Welcome to GO Android !</string>
+    <string name="login_title">Welcome to GO SOPT Android !</string>
     <string name="login_id_title">ID</string>
     <string name="login_id_hint">아이디를 입력하세요.</string>
     <string name="login_pw_title">PW</string>
@@ -23,9 +23,12 @@
     <string name="toast_auto_login">자동 로그인에 성공하였습니다.</string>
     <string name="snackbar_sign_up_rule">조건에 맞추어 작성해주세요.</string>
 
-    <string name="menu_item_home">홈</string>
-    <string name="menu_item_search">검색</string>
-    <string name="menu_item_gallery">갤러리</string>
+    <string name="menu_item_playlist">PLAYLIST</string>
+    <string name="menu_item_main">MAIN</string>
+    <string name="menu_item_account">ACCOUNT</string>
     <string name="playlist_title">상호의 플레이리스트</string>
     <string name="btn_delete">DELETE</string>
+    <string name="main_upper_text">김상호님 ,</string>
+    <string name="main_lower_text">방문을 환영합니다</string>
+    <string name="menu_item_album">ALBUM</string>
 </resources>
