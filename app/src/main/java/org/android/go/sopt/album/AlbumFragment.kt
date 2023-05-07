@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAlbumBinding
 
 class AlbumFragment : Fragment() {
@@ -23,7 +24,9 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.pagerAlbum.adapter = AlbumAdapter().apply {
+            submitList(listOf<Int>(R.drawable.ic_song_dosii, R.drawable.ic_song_basecamp, R.drawable.ic_song_lacuna))
+        }
     }
 
     override fun onDestroyView() {
