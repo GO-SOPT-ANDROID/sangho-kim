@@ -25,8 +25,18 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.pagerAlbum.adapter = AlbumAdapter().apply {
-            submitList(listOf<Int>(R.drawable.ic_song_dosii, R.drawable.ic_song_basecamp, R.drawable.ic_song_lacuna))
+            submitList(
+                listOf<Int>(
+                    R.drawable.ic_song_dosii,
+                    R.drawable.ic_song_basecamp,
+                    R.drawable.ic_song_lacuna,
+                    R.drawable.ic_song_hyunsang,
+                    R.drawable.ic_song_sininryu
+                )
+            )
         }
+        // dots indicator 연결
+        binding.albumDotsIndicator.setViewPager2(binding.pagerAlbum)
     }
 
     override fun onDestroyView() {
