@@ -30,4 +30,5 @@
     <string name="btn_delete">DELETE</string>
     <string name="main_upper_text">김상호님 ,</string>
     <string name="main_lower_text">방문을 환영합니다</string>
+    <string name="menu_item_album">ALBUM</string>
 </resources>

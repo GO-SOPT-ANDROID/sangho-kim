@@ -2,19 +2,19 @@ package org.android.go.sopt.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.R
 import org.android.go.sopt.account.AccountFragment
-import org.android.go.sopt.databinding.ActivityPlaylistBinding
+import org.android.go.sopt.album.AlbumFragment
+import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.playlist.ListFragment
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPlaylistBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPlaylistBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 시작 화면 ListFragment로 설정
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_playlist -> changeFragment(ListFragment())
+                R.id.menu_album -> changeFragment(AlbumFragment())
                 R.id.menu_main -> changeFragment(MainFragment())
                 R.id.menu_account -> changeFragment(AccountFragment())
             }

@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_menu_playlist"
         android:title="@string/menu_item_playlist" />
     <item
+        android:id="@+id/menu_album"
+        android:icon="@drawable/ic_menu_album"
+        android:title="@string/menu_item_album" />
+    <item
         android:id="@+id/menu_main"
         android:icon="@drawable/ic_menu_main"
         android:title="@string/menu_item_main" />
