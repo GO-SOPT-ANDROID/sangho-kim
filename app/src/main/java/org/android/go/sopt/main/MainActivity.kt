@@ -7,7 +7,9 @@ import org.android.go.sopt.R
 import org.android.go.sopt.account.AccountFragment
 import org.android.go.sopt.album.AlbumFragment
 import org.android.go.sopt.databinding.ActivityMainBinding
+import org.android.go.sopt.follower.FollowerFragment
 import org.android.go.sopt.playlist.ListFragment
+import org.android.go.sopt.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_playlist -> changeFragment(ListFragment())
                 R.id.menu_album -> changeFragment(AlbumFragment())
-                R.id.menu_main -> changeFragment(MainFragment())
+                R.id.menu_search -> changeFragment(SearchFragment())
+                R.id.menu_follower -> changeFragment(FollowerFragment())
                 R.id.menu_account -> changeFragment(AccountFragment())
             }
             true

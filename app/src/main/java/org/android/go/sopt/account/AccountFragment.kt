@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAccountBinding
 import org.android.go.sopt.login.LoginActivity
 
@@ -46,7 +48,8 @@ class AccountFragment : Fragment() {
             }
             // 알림 빌더 생성
             AlertDialog.Builder(this.requireContext()).run {
-                setMessage("로그아웃 하시겠습니까?")
+                setTitle(resources.getString(R.string.dialog_logout_title))
+                setMessage(resources.getString(R.string.dialog_logout_text))
                 setPositiveButton("YES", alertEventHandler)
                 setNegativeButton("NO", alertEventHandler)
                 show()

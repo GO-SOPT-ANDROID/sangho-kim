@@ -24,11 +24,16 @@
     <string name="snackbar_sign_up_rule">조건에 맞추어 작성해주세요.</string>
 
     <string name="menu_item_playlist">PLAYLIST</string>
-    <string name="menu_item_main">MAIN</string>
+    <string name="menu_item_search">SEARCH</string>
+    <string name="menu_item_follower">FOLLOWER</string>
     <string name="menu_item_account">ACCOUNT</string>
     <string name="playlist_title">상호의 플레이리스트</string>
     <string name="btn_delete">DELETE</string>
     <string name="main_upper_text">김상호님 ,</string>
     <string name="main_lower_text">방문을 환영합니다</string>
     <string name="menu_item_album">ALBUM</string>
+    <string name="dialog_logout_title">로그아웃 하시겠습니까?</string>
+    <string name="dialog_logout_text">자동로그인이 해제됩니다</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

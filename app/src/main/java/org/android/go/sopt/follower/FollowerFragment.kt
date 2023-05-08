@@ -1,15 +1,15 @@
-package org.android.go.sopt.main
+package org.android.go.sopt.follower
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.databinding.FragmentMainBinding
+import org.android.go.sopt.databinding.FragmentFollowerBinding
 
-class MainFragment : Fragment() {
-    private var _binding: FragmentMainBinding? = null
-    private val binding: FragmentMainBinding
+class FollowerFragment : Fragment() {
+    private var _binding: FragmentFollowerBinding? = null
+    private val binding: FragmentFollowerBinding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
