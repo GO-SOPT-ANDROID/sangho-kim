@@ -17,16 +17,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_playlist_song" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_item_delete"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:padding="10dp"
+        android:elevation="8dp"
         android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/btn_delete"
+        android:theme="@style/Widget.Material3.Button.ElevatedButton"
+        app:cornerRadius="18dp"
+        app:icon="@drawable/ic_btn_delete"
+        app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/btn_delete"
         app:layout_constraintStart_toStartOf="parent" />
 
 
