@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.main.MainActivity
+import org.android.go.sopt.util.makeSnackBar
+import org.android.go.sopt.util.makeToast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -77,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 putExtra("name", name)
                 putExtra("skill", skill)
             }
-            Toast.makeText(this, getString(R.string.toast_login), Toast.LENGTH_SHORT).show()
+            binding.root.makeToast(getString(R.string.toast_login))
 
             // 로그인 성공한 정보는 자동로그인을 위해 저장
             editor.putString("id", id)
@@ -90,11 +92,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
 
         } else {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.snackbar_cant_login),
-                Snackbar.LENGTH_SHORT
-            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
+            binding.root.makeSnackBar(getString(R.string.snackbar_cant_login))
         }
     }
 
@@ -103,11 +101,7 @@ class LoginActivity : AppCompatActivity() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.snackbar_sign_up),
-                        Snackbar.LENGTH_SHORT
-                    ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
+                    binding.root.makeSnackBar(getString(R.string.snackbar_sign_up))
 
                     // 전달 받은 result 데이터의 String 가져옴
                     id = result.data?.getStringExtra("id") ?: ""
@@ -126,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
                 putExtra("id", idShared)
                 putExtra("pw", pwShared)
             }
-            Toast.makeText(this, getString(R.string.toast_auto_login), Toast.LENGTH_SHORT).show()
+            binding.root.makeToast(getString(R.string.toast_auto_login))
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()

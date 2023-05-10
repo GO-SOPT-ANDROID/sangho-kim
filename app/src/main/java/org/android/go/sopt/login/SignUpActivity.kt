@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
+import org.android.go.sopt.util.makeSnackBar
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -64,11 +65,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
 
         } else {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.snackbar_sign_up_rule),
-                Snackbar.LENGTH_SHORT
-            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
+            binding.root.makeSnackBar(getString(R.string.snackbar_sign_up_rule))
         }
     }
 }
