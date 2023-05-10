@@ -3,11 +3,9 @@ package org.android.go.sopt.login
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils

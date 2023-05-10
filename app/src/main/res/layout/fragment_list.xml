@@ -20,11 +20,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_item_delete"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:elevation="8dp"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="18dp"
         android:text="@string/btn_delete"
         android:theme="@style/Widget.Material3.Button.ElevatedButton"
         app:cornerRadius="18dp"

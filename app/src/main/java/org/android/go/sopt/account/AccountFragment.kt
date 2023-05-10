@@ -47,6 +47,7 @@ class AccountFragment : Fragment() {
         _binding = null
     }
 
+
     private fun setAlertEventHandler(): DialogInterface.OnClickListener {
         alertEventHandler = DialogInterface.OnClickListener { _, click ->
             if (click == DialogInterface.BUTTON_POSITIVE) {
