@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                 putExtra("name", name)
                 putExtra("skill", skill)
             }
-            binding.root.makeToast(getString(R.string.toast_login))
+            binding.root.makeToast(getString(R.string.toast_login_success))
 
             // 로그인 성공한 정보는 자동로그인을 위해 저장
             editor.putString("id", id)
@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
 
         } else {
-            binding.root.makeSnackBar(getString(R.string.snackbar_cant_login))
+            binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
         }
     }
 
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_sign_up))
+                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
 
                     // 전달 받은 result 데이터의 String 가져옴
                     id = result.data?.getStringExtra("id") ?: ""
@@ -115,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
                 putExtra("id", idShared)
                 putExtra("pw", pwShared)
             }
-            binding.root.makeToast(getString(R.string.toast_auto_login))
+            binding.root.makeToast(getString(R.string.toast_login_autologin))
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()

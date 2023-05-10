@@ -63,7 +63,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
 
         } else {
-            binding.root.makeSnackBar(getString(R.string.snackbar_sign_up_rule))
+            binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
         }
     }
 }

@@ -4,13 +4,11 @@ import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAccountBinding
 import org.android.go.sopt.login.LoginActivity
@@ -67,8 +65,8 @@ class AccountFragment : Fragment() {
 
     private fun buildAlertDialog(alertEventHandler : DialogInterface.OnClickListener) {
         AlertDialog.Builder(this.requireContext()).run {
-            setTitle(resources.getString(R.string.dialog_logout_title))
-            setMessage(resources.getString(R.string.dialog_logout_text))
+            setTitle(resources.getString(R.string.dialog_account_logout_title))
+            setMessage(resources.getString(R.string.dialog_account_logout_text))
             setPositiveButton("YES", alertEventHandler)
             setNegativeButton("NO", alertEventHandler)
             show()

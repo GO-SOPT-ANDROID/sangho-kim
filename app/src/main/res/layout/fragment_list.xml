@@ -25,7 +25,7 @@
         android:elevation="8dp"
         android:gravity="center"
         android:padding="18dp"
-        android:text="@string/btn_delete"
+        android:text="@string/btn_playlist_delete"
         android:theme="@style/Widget.Material3.Button.ElevatedButton"
         app:cornerRadius="18dp"
         app:icon="@drawable/ic_btn_delete"

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/playlist_title"
+        android:text="@string/tv_playlist_title"
         android:textColor="?attr/colorOnSurface"
         style="@style/TextAppearance.Pretendard.Title"
         app:layout_constraintEnd_toEndOf="parent"
