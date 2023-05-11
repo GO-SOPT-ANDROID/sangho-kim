@@ -20,7 +20,7 @@
     <string name="et_signup_skill_hint">특기를 입력하세요.</string>
 
     <string name="snackbar_signup_success">회원가입에 성공하였습니다.</string>
-    <string name="snackbar_signup_server">서버와의 통신에 실패하였습니다.</string>
+    <string name="snackbar_signup_failure">서버와의 통신에 실패하였습니다.</string>
     <string name="toast_login_success">로그인에 성공하였습니다.</string>
     <string name="toast_login_autologin">자동 로그인에 성공하였습니다.</string>
     <string name="snackbar_login_dismatch">회원가입 정보와 일치하지 않습니다.</string>

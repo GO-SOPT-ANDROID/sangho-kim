@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.login
+package org.android.go.sopt.presentation.auth
 
 import android.app.Activity
 import android.content.Context
@@ -6,24 +6,27 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
+import org.android.go.sopt.remote.ServicePool
+import org.android.go.sopt.remote.auth.LoginRequestDTO
+import org.android.go.sopt.remote.auth.LoginResponseDTO
 import org.android.go.sopt.util.makeSnackBar
 import org.android.go.sopt.util.makeToast
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var id: String
-    private lateinit var pw: String
-    private lateinit var name: String
-    private lateinit var skill: String
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+
+    private val authService = ServicePool.authService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +37,17 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
-        // 회원가입 액티비티에서 반환된 intent에서 결과값 받아옴
-        returnIntentWithSignUpInfo()
-
         // 회원가입 버튼 클릭 시 이동
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
-            resultLauncher.launch(intent)
+            startActivityWithFlags(intent)
         }
 
         // 로그인 버튼 클릭 시 이동
         binding.btnLogin.setOnClickListener {
-            login()
+            loginWithServer()
         }
+
         // 화면 터치로 키보드 내리기
         binding.root.setOnClickListener {
             hideKeyboard(this)
@@ -56,63 +57,50 @@ class LoginActivity : AppCompatActivity() {
         autologin()
     }
 
-    private fun login() {
-        val idEntered = binding.etLoginId.text.toString()
-        val pwEntered = binding.etLoginPw.text.toString()
-
-        // 로그인 조건 확인
-        if (idEntered == id && pwEntered == pw) {
-
-            val intent = Intent(this, MainActivity::class.java).apply {
-                putExtra("id", id)
-                putExtra("pw", pw)
-                putExtra("name", name)
-                putExtra("skill", skill)
+    private fun loginWithServer() {
+        authService.login(
+            with(binding) {
+                LoginRequestDTO(
+                    etLoginId.text.toString(),
+                    etLoginPw.text.toString(),
+                )
             }
-            binding.root.makeToast(getString(R.string.toast_login_success))
+        ).enqueue(object : retrofit2.Callback<LoginResponseDTO> {
+            override fun onResponse(
+                call: Call<LoginResponseDTO>,
+                response: Response<LoginResponseDTO>
+            ) {
+                if (response.isSuccessful) {
+                    binding.root.makeToast(getString(R.string.toast_login_success))
 
-            // 로그인 성공한 정보는 자동로그인을 위해 저장
-            editor.putString("id", id)
-            editor.putString("pw", pw)
-            editor.apply()
+                    val idFromServer = response.body()?.data?.id.toString()
+                    editor.putString("id", idFromServer)
+                    editor.apply()
 
-            startActivityWithFlags(intent)
-
-        } else {
-            binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
-        }
-    }
-
-    // 회원가입 액티비티에서 반환된 intent에서 결과값 받아옴
-    private fun returnIntentWithSignUpInfo() {
-        resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
-
-                    // 전달 받은 result 데이터의 String 가져옴
-                    id = result.data?.getStringExtra("id") ?: ""
-                    pw = result.data?.getStringExtra("pw") ?: ""
-                    name = result.data?.getStringExtra("name") ?: ""
-                    skill = result.data?.getStringExtra("skill") ?: ""
+                    val intent = Intent(binding.root.context, MainActivity::class.java)
+                    startActivityWithFlags(intent)
+                } else {
+                    binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
                 }
             }
+            override fun onFailure(call: Call<LoginResponseDTO>, t: Throwable) {
+                binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
+            }
+        })
     }
 
     private fun autologin() {
         val idShared = sharedPreferences.getString("id", null)
-        val pwShared = sharedPreferences.getString("pw", null)
-        if (idShared != null && pwShared != null) {
+        if (idShared != null) {
             val intent = Intent(this, MainActivity::class.java).apply {
                 putExtra("id", idShared)
-                putExtra("pw", pwShared)
             }
             binding.root.makeToast(getString(R.string.toast_login_autologin))
             startActivityWithFlags(intent)
         }
     }
 
-    private fun startActivityWithFlags(intent: Intent) {
+    fun startActivityWithFlags(intent: Intent) {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
