@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.android.go.sopt.BuildConfig
 import org.android.go.sopt.remote.auth.AuthService
+import org.android.go.sopt.remote.follower.FollowerService
 import retrofit2.Retrofit
 
 object ApiFactory {
@@ -24,4 +25,5 @@ object ApiFactory {
 
 object ServicePool {
     val authService = ApiFactory.create<AuthService>()
+    val followerService = ApiFactory.create<FollowerService>()
 }
