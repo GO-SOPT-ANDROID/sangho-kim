@@ -8,13 +8,20 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
+import org.android.go.sopt.data.ServicePool
+import org.android.go.sopt.data.SignUpRequestDTO
+import org.android.go.sopt.data.SignUpResponseDTO
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
 import org.android.go.sopt.util.makeSnackBar
+import retrofit2.Call
+import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
+
+    private val signUpService = ServicePool.signUpService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +46,11 @@ class SignUpActivity : AppCompatActivity() {
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
-            signInByRule()
+            if (canUserSignIn()) {
+                signUpWithServer()
+            } else {
+                binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
+            }
         }
 
         // 화면 터치로 키보드 내리기
@@ -61,27 +72,32 @@ class SignUpActivity : AppCompatActivity() {
         keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
     }
 
-    private fun signInByRule() {
-        // 로그인 조건 설정 후 가입 마무리
-        val id = binding.etSignUpId.text.toString()
-        val pw = binding.etSignUpPw.text.toString()
-        val name = binding.etSignUpName.text.toString()
-        val skill = binding.etSignUpSkill.text.toString()
-
-        if (canUserSignIn()) {
-            // 반환할 인텐트 설정
-            val intent = Intent(this, SignUpActivity::class.java).apply {
-                putExtra("id", id)
-                putExtra("pw", pw)
-                putExtra("name", name)
-                putExtra("skill", skill)
+    private fun signUpWithServer() {
+        signUpService.login(
+            with(binding) {
+                SignUpRequestDTO(
+                    etSignUpId.text.toString(),
+                    etSignUpPw.text.toString(),
+                    etSignUpName.text.toString(),
+                    etSignUpSkill.text.toString()
+                )
             }
-            setResult(RESULT_OK, intent)
-            finish()
-
-        } else {
-            binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
-        }
+        ).enqueue(object : retrofit2.Callback<SignUpResponseDTO> {
+            override fun onResponse(
+                call: Call<SignUpResponseDTO>,
+                response: Response<SignUpResponseDTO>
+            ) {
+                if (response.isSuccessful) {
+                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
+                    if (!isFinishing) finish()
+                } else {
+                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_server))
+                }
+            }
+            override fun onFailure(call: Call<SignUpResponseDTO>, t: Throwable) {
+                binding.root.makeSnackBar(getString(R.string.snackbar_signup_server))
+            }
+        })
     }
 
     private fun canUserSignIn(): Boolean {
