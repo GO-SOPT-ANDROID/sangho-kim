@@ -3,14 +3,13 @@ package org.android.go.sopt.login
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
+import org.android.go.sopt.util.makeSnackBar
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -64,11 +63,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
 
         } else {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.snackbar_sign_up_rule),
-                Snackbar.LENGTH_SHORT
-            ).setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).show()
+            binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
         }
     }
 }

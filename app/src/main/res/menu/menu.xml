@@ -9,9 +9,13 @@
         android:icon="@drawable/ic_menu_album"
         android:title="@string/menu_item_album" />
     <item
-        android:id="@+id/menu_main"
-        android:icon="@drawable/ic_menu_main"
-        android:title="@string/menu_item_main" />
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_menu_search"
+        android:title="@string/menu_item_search" />
+    <item
+        android:id="@+id/menu_follower"
+        android:icon="@drawable/ic_menu_follower"
+        android:title="@string/menu_item_follower" />
     <item
         android:id="@+id/menu_account"
         android:icon="@drawable/ic_menu_account"

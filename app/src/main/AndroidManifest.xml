@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.GOSOPTAndroid"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".login.MyPageActivity"
@@ -32,5 +33,7 @@
             android:name=".main.MainActivity"
             android:exported="false" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

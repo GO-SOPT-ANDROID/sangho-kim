@@ -12,7 +12,6 @@ class AlbumAdapter :
             onItemsTheSame = { old, new -> old == new })
     ) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val binding: ItemAlbumBinding =
             ItemAlbumBinding.inflate(LayoutInflater.from(parent.context), parent, false)

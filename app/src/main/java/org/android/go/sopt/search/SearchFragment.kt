@@ -1,16 +1,15 @@
-package org.android.go.sopt.album
+package org.android.go.sopt.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.R
-import org.android.go.sopt.databinding.FragmentAlbumBinding
+import org.android.go.sopt.databinding.FragmentSearchBinding
 
-class AlbumFragment : Fragment() {
-    private var _binding: FragmentAlbumBinding? = null
-    private val binding: FragmentAlbumBinding
+class SearchFragment : Fragment() {
+    private var _binding: FragmentSearchBinding? = null
+    private val binding: FragmentSearchBinding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
@@ -18,19 +17,13 @@ class AlbumFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // 앨범 리스트 설정
-        binding.pagerAlbum.adapter = AlbumAdapter().apply {
-            submitList(mockAlbumList)
-        }
-        // dots indicator 연결
-        binding.albumDotsIndicator.setViewPager2(binding.pagerAlbum)
+        // 대부분의 로직은 여기에 구현
     }
 
     override fun onDestroyView() {

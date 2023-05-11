@@ -1,34 +1,42 @@
 <resources>
     <string name="app_name">GO SOPT Android</string>
-    <string name="textview_1">TextView 1</string>
-    <string name="login_title">Welcome to GO SOPT Android !</string>
-    <string name="login_id_title">ID</string>
-    <string name="login_id_hint">아이디를 입력하세요.</string>
-    <string name="login_pw_title">PW</string>
-    <string name="login_pw_hint">비밀번호를 입력하세요.</string>
-    <string name="login_btn_login">LOGIN</string>
-    <string name="login_btn_sign_up">SIGN UP</string>
-    <string name="sign_up_title">SIGN UP</string>
-    <string name="sign_up_id_title">아이디</string>
-    <string name="sign_up_id_hint">아이디를 6~10글자로 입력하세요.</string>
-    <string name="sign_up_pw_title">비밀번호</string>
-    <string name="sign_up_pw_hint">비밀번호를 8~12글자로 입력하세요.</string>
-    <string name="sign_up_name_title">이름</string>
-    <string name="sign_up_name_hint">이름을 입력하세요.</string>
-    <string name="sign_up_skill_title">특기</string>
-    <string name="sign_up_skill_hint">특기를 입력하세요.</string>
-    <string name="snackbar_sign_up">회원가입에 성공하였습니다.</string>
-    <string name="toast_login">로그인에 성공하였습니다.</string>
-    <string name="snackbar_cant_login">회원가입 정보와 일치하지 않습니다.</string>
-    <string name="toast_auto_login">자동 로그인에 성공하였습니다.</string>
-    <string name="snackbar_sign_up_rule">조건에 맞추어 작성해주세요.</string>
+    <!--  what_where_description -->
+    <string name="tv_login_title">Welcome to GO SOPT Android !</string>
+    <string name="tv_login_id_title">ID</string>
+    <string name="et_login_id_hint">아이디를 입력하세요.</string>
+    <string name="tv_login_pw_title">PW</string>
+    <string name="et_login_pw_hint">비밀번호를 입력하세요.</string>
+    <string name="btn_login_login">LOGIN</string>
+    <string name="btn_login_sign_up">SIGN UP</string>
+
+    <string name="tv_signup_title">회원가입</string>
+    <string name="tv_signup_id_title">아이디</string>
+    <string name="et_signup_id_hint">아이디를 6~10글자로 입력하세요.</string>
+    <string name="tv_signup_pw_title">비밀번호</string>
+    <string name="et_signup_pw_hint">비밀번호를 8~12글자로 입력하세요.</string>
+    <string name="tv_signup_name_title">이름</string>
+    <string name="et_signup_name_hint">이름을 입력하세요.</string>
+    <string name="tv_signup_skill_title">특기</string>
+    <string name="et_signup_skill_hint">특기를 입력하세요.</string>
+
+    <string name="snackbar_signup_success">회원가입에 성공하였습니다.</string>
+    <string name="snackbar_signup_rule">조건에 맞추어 작성해주세요.</string>
+    <string name="toast_login_success">로그인에 성공하였습니다.</string>
+    <string name="toast_login_autologin">자동 로그인에 성공하였습니다.</string>
+    <string name="snackbar_login_dismatch">회원가입 정보와 일치하지 않습니다.</string>
 
     <string name="menu_item_playlist">PLAYLIST</string>
-    <string name="menu_item_main">MAIN</string>
+    <string name="menu_item_search">SEARCH</string>
+    <string name="menu_item_follower">FOLLOWER</string>
     <string name="menu_item_account">ACCOUNT</string>
-    <string name="playlist_title">상호의 플레이리스트</string>
-    <string name="btn_delete">DELETE</string>
-    <string name="main_upper_text">김상호님 ,</string>
-    <string name="main_lower_text">방문을 환영합니다</string>
     <string name="menu_item_album">ALBUM</string>
+
+    <string name="tv_playlist_title">상호의 플레이리스트</string>
+    <string name="btn_playlist_delete">DELETE</string>
+    <string name="tv_main_upper_text">김상호님 ,</string>
+    <string name="tv_main_lower_text">방문을 환영합니다</string>
+
+    <string name="dialog_account_logout_title">로그아웃 하시겠습니까?</string>
+    <string name="dialog_account_logout_text">자동로그인이 해제됩니다</string>
+
 </resources>
