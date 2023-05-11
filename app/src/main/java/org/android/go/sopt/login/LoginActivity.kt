@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         editor = sharedPreferences.edit()
 
         // 회원가입 액티비티에서 반환된 intent에서 결과값 받아옴
-        returnIntent()
+        returnIntentWithSignUpInfo()
 
         // 회원가입 버튼 클릭 시 이동
         binding.btnSignUp.setOnClickListener {
@@ -54,11 +54,6 @@ class LoginActivity : AppCompatActivity() {
 
         // 자동로그인 설정
         autologin()
-    }
-
-    private fun hideKeyboard(activity: Activity) {
-        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
     }
 
     private fun login() {
@@ -81,10 +76,7 @@ class LoginActivity : AppCompatActivity() {
             editor.putString("pw", pw)
             editor.apply()
 
-            // 로그인 액티비티 종료 후 자기소개 화면으로 넘어가기
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            startActivityWithFlags(intent)
 
         } else {
             binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
@@ -92,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // 회원가입 액티비티에서 반환된 intent에서 결과값 받아옴
-    private fun returnIntent() {
+    private fun returnIntentWithSignUpInfo() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
@@ -116,9 +108,18 @@ class LoginActivity : AppCompatActivity() {
                 putExtra("pw", pwShared)
             }
             binding.root.makeToast(getString(R.string.toast_login_autologin))
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            startActivityWithFlags(intent)
         }
+    }
+
+    private fun startActivityWithFlags(intent: Intent) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun hideKeyboard(activity: Activity) {
+        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
     }
 }

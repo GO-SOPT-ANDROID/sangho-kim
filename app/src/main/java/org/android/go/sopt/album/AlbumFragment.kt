@@ -25,6 +25,7 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 앨범 리스트 설정
         binding.pagerAlbum.adapter = AlbumAdapter().apply {
             submitList(mockAlbumList)
         }
