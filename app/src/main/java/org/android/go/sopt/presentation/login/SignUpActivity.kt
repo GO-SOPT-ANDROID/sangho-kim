@@ -2,15 +2,14 @@ package org.android.go.sopt.presentation.login
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
-import org.android.go.sopt.data.ServicePool
-import org.android.go.sopt.data.SignUpRequestDTO
-import org.android.go.sopt.data.SignUpResponseDTO
+import org.android.go.sopt.remote.ServicePool
+import org.android.go.sopt.remote.auth.SignUpRequestDTO
+import org.android.go.sopt.remote.auth.SignUpResponseDTO
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
 import org.android.go.sopt.util.makeSnackBar
@@ -21,7 +20,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
-    private val signUpService = ServicePool.signUpService
+    private val signUpService = ServicePool.authService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +45,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
-            if (canUserSignIn()) {
-                signUpWithServer()
-            } else {
-                binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
-            }
+            signUpWithServer()
         }
 
         // 화면 터치로 키보드 내리기
@@ -73,7 +68,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun signUpWithServer() {
-        signUpService.login(
+        signUpService.signUp(
             with(binding) {
                 SignUpRequestDTO(
                     etSignUpId.text.toString(),
