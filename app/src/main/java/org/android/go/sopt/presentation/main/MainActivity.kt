@@ -1,4 +1,4 @@
-package org.android.go.sopt.main
+package org.android.go.sopt.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,12 +6,12 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import org.android.go.sopt.R
-import org.android.go.sopt.account.AccountFragment
-import org.android.go.sopt.album.AlbumFragment
+import org.android.go.sopt.presentation.account.AccountFragment
+import org.android.go.sopt.presentation.album.AlbumFragment
 import org.android.go.sopt.databinding.ActivityMainBinding
-import org.android.go.sopt.follower.FollowerFragment
-import org.android.go.sopt.playlist.ListFragment
-import org.android.go.sopt.search.SearchFragment
+import org.android.go.sopt.presentation.follower.FollowerFragment
+import org.android.go.sopt.presentation.playlist.ListFragment
+import org.android.go.sopt.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

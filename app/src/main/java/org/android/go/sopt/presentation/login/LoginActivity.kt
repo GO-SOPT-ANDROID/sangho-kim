@@ -1,4 +1,4 @@
-package org.android.go.sopt.login
+package org.android.go.sopt.presentation.login
 
 import android.app.Activity
 import android.content.Context
@@ -11,7 +11,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
-import org.android.go.sopt.main.MainActivity
+import org.android.go.sopt.presentation.main.MainActivity
 import org.android.go.sopt.util.makeSnackBar
 import org.android.go.sopt.util.makeToast
 

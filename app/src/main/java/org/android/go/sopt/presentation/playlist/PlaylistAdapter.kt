@@ -1,4 +1,4 @@
-package org.android.go.sopt.playlist
+package org.android.go.sopt.presentation.playlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

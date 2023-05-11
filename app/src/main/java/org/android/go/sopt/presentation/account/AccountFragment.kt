@@ -1,4 +1,4 @@
-package org.android.go.sopt.account
+package org.android.go.sopt.presentation.account
 
 import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAccountBinding
-import org.android.go.sopt.login.LoginActivity
+import org.android.go.sopt.presentation.login.LoginActivity
 
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null

@@ -1,4 +1,4 @@
-package org.android.go.sopt.playlist
+package org.android.go.sopt.presentation.playlist
 
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemPlaylistTitleBinding

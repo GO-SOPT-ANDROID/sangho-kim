@@ -1,4 +1,4 @@
-package org.android.go.sopt.login
+package org.android.go.sopt.presentation.login
 
 import android.app.Activity
 import android.content.Context

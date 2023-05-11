@@ -1,15 +1,15 @@
-package org.android.go.sopt.follower
+package org.android.go.sopt.presentation.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.databinding.FragmentFollowerBinding
+import org.android.go.sopt.databinding.FragmentSearchBinding
 
-class FollowerFragment : Fragment() {
-    private var _binding: FragmentFollowerBinding? = null
-    private val binding: FragmentFollowerBinding
+class SearchFragment : Fragment() {
+    private var _binding: FragmentSearchBinding? = null
+    private val binding: FragmentSearchBinding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class FollowerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFollowerBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
