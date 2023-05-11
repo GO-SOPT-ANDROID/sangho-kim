@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
         val name = binding.etSignUpName.text.toString()
         val skill = binding.etSignUpSkill.text.toString()
 
-        if (id.length in 6..10 && pw.length in 8..12) {
+        if (canUserSignIn()) {
             // 반환할 인텐트 설정
             val intent = Intent(this, SignUpActivity::class.java).apply {
                 putExtra("id", id)
@@ -65,5 +65,12 @@ class SignUpActivity : AppCompatActivity() {
         } else {
             binding.root.makeSnackBar(getString(R.string.snackbar_signup_rule))
         }
+    }
+
+    private fun canUserSignIn(): Boolean {
+        return binding.etSignUpId.text.length in 6..10
+                && binding.etSignUpPw.text.length in 8..12
+                && binding.etSignUpName.text.isNotBlank()
+                && binding.etSignUpSkill.text.isNotBlank()
     }
 }
