@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
@@ -19,6 +20,22 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 조건에 따라 가입 버튼 활성화 / 비활성화
+        binding.btnSignUp.isEnabled = false
+
+        binding.etSignUpId.doAfterTextChanged {
+            binding.btnSignUp.isEnabled = canUserSignIn()
+        }
+        binding.etSignUpPw.doAfterTextChanged {
+            binding.btnSignUp.isEnabled = canUserSignIn()
+        }
+        binding.etSignUpName.doAfterTextChanged {
+            binding.btnSignUp.isEnabled = canUserSignIn()
+        }
+        binding.etSignUpSkill.doAfterTextChanged {
+            binding.btnSignUp.isEnabled = canUserSignIn()
+        }
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
