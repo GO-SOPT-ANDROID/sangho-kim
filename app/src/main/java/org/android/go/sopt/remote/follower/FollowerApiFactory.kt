@@ -1,4 +1,4 @@
-package org.android.go.sopt.remote
+package org.android.go.sopt.remote.follower
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -9,8 +9,8 @@ import org.android.go.sopt.remote.auth.AuthService
 import org.android.go.sopt.remote.follower.FollowerService
 import retrofit2.Retrofit
 
-object ApiFactory {
-    private const val BASE_URL = BuildConfig.AUTH_BASE_URL
+object FollowerApiFactory {
+    private const val BASE_URL = BuildConfig.REQRES_BASE_URL
 
     @OptIn(ExperimentalSerializationApi::class)
     val retrofit: Retrofit by lazy {
@@ -23,7 +23,6 @@ object ApiFactory {
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
 }
 
-object ServicePool {
-    val authService = ApiFactory.create<AuthService>()
-    val followerService = ApiFactory.create<FollowerService>()
+object FollowerServicePool {
+    val followerService = FollowerApiFactory.create<FollowerService>()
 }

@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
-import org.android.go.sopt.remote.ServicePool
 import org.android.go.sopt.remote.auth.SignUpRequestDTO
 import org.android.go.sopt.remote.auth.SignUpResponseDTO
 import org.android.go.sopt.databinding.ActivitySignUpBinding
+import org.android.go.sopt.remote.auth.AuthServicePool.authService
 import org.android.go.sopt.util.KeyboardVisibilityUtils
 import org.android.go.sopt.util.makeSnackBar
 import retrofit2.Call
@@ -20,8 +20,6 @@ import retrofit2.Response
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
-
-    private val authService = ServicePool.authService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

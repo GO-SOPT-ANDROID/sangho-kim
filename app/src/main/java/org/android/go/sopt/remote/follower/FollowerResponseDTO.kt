@@ -14,12 +14,12 @@ data class FollowerResponseDTO(
     @SerialName("total_pages")
     val total_pages: Int,
     @SerialName("data")
-    val infos: List<Data>,
+    val data: List<User>,
     @SerialName("support")
     val support: Support,
 ) {
     @Serializable
-    data class Data(
+    data class User(
         @SerialName("id")
         val id: Int,
         @SerialName("email")

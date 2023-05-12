@@ -10,9 +10,9 @@ import android.view.inputmethod.InputMethodManager
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
-import org.android.go.sopt.remote.ServicePool
 import org.android.go.sopt.remote.auth.LoginRequestDTO
 import org.android.go.sopt.remote.auth.LoginResponseDTO
+import org.android.go.sopt.remote.auth.AuthServicePool.authService
 import org.android.go.sopt.util.makeSnackBar
 import org.android.go.sopt.util.makeToast
 import retrofit2.Call
@@ -22,8 +22,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-
-    private val authService = ServicePool.authService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
