@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ConcatAdapter
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
+import org.android.go.sopt.presentation.playlist.PlaylistAdapter
+import org.android.go.sopt.presentation.playlist.mockPlayList
 import org.android.go.sopt.remote.follower.FollowerResponseDTO
 import org.android.go.sopt.remote.follower.FollowerServicePool.followerService
 import org.android.go.sopt.util.makeSnackBar
@@ -20,6 +23,7 @@ class FollowerFragment : Fragment() {
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     private lateinit var followerList : MutableList<FollowerResponseDTO.User>
+    var followerAdapter : FollowerAdapter = FollowerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +36,8 @@ class FollowerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.rvFollower.adapter = followerAdapter
 
         // 서버 통신으로 User 리스트 받아오기
         followerList = mutableListOf<FollowerResponseDTO.User>()
@@ -54,6 +60,8 @@ class FollowerFragment : Fragment() {
                 if (response.isSuccessful) {
                     val responseList = response.body()?.data?.toMutableList()
                     followerList = followerList.union(responseList!!).toMutableList()
+
+                    followerAdapter.submitList(followerList)
                 } else {
                     binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
                 }
