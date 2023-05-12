@@ -1,16 +1,12 @@
 package org.android.go.sopt.presentation.follower
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ConcatAdapter
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
-import org.android.go.sopt.presentation.playlist.PlaylistAdapter
-import org.android.go.sopt.presentation.playlist.mockPlayList
 import org.android.go.sopt.remote.follower.FollowerResponseDTO
 import org.android.go.sopt.remote.follower.FollowerServicePool.followerService
 import org.android.go.sopt.util.makeSnackBar
