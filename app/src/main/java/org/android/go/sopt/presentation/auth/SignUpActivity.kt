@@ -26,9 +26,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 조건에 따라 가입 버튼 활성화 / 비활성화
-        binding.btnSignUp.isEnabled = false
-
+        // 텍스트 입력을 감지해서 조건 만족 시 버튼 활성화
         binding.etSignUpId.doAfterTextChanged {
             binding.btnSignUp.isEnabled = canUserSignIn()
         }
