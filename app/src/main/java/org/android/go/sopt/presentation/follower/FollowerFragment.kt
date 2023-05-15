@@ -18,8 +18,8 @@ class FollowerFragment : Fragment() {
     private val binding: FragmentFollowerBinding
         get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
-    private lateinit var followerList : MutableList<FollowerResponseDTO.User>
-    var followerAdapter : FollowerAdapter = FollowerAdapter()
+    private val followerList = mutableListOf<FollowerResponseDTO.User>()
+    private val followerAdapter = FollowerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,6 @@ class FollowerFragment : Fragment() {
         binding.rvFollower.adapter = followerAdapter
 
         // 서버 통신으로 User 리스트 받아오기
-        followerList = mutableListOf<FollowerResponseDTO.User>()
         addListFromServer(1)
         addListFromServer(2)
     }
@@ -55,9 +54,10 @@ class FollowerFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val responseList = response.body()?.data?.toMutableList()
-                    followerList = followerList.union(responseList!!).toMutableList()
-
-                    followerAdapter.submitList(followerList)
+                    responseList?.let {
+                        followerList.addAll(responseList)
+                    }
+                    followerAdapter.submitList(followerList.toList())
                 } else {
                     binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
                 }
