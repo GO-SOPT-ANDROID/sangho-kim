@@ -10,7 +10,7 @@ class FollowerViewHolder(val binding: ItemFollowerBinding) :
 
     fun onBind(item: FollowerResponseDTO.User) {
         Glide.with(binding.root.context).load(item.avatar).into(binding.ivFollowerImage)
-        val name = item.first_name + " " + item.last_name
+        val name = item.firstName + " " + item.lastName
         binding.tvFollowerName.text = name
         binding.tvFollowerEmail.text = item.email
     }
