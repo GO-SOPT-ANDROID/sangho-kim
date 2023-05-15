@@ -28,16 +28,16 @@ class SignUpActivity : AppCompatActivity() {
 
         // 텍스트 입력을 감지해서 조건 만족 시 버튼 활성화
         binding.etSignUpId.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = canUserSignIn()
+            binding.btnSignUp.isEnabled = checkUserSignIn()
         }
         binding.etSignUpPw.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = canUserSignIn()
+            binding.btnSignUp.isEnabled = checkUserSignIn()
         }
         binding.etSignUpName.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = canUserSignIn()
+            binding.btnSignUp.isEnabled = checkUserSignIn()
         }
         binding.etSignUpSkill.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = canUserSignIn()
+            binding.btnSignUp.isEnabled = checkUserSignIn()
         }
 
         // SignUp 버튼 클릭
@@ -96,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
         })
     }
 
-    private fun canUserSignIn(): Boolean {
+    private fun checkUserSignIn(): Boolean {
         return binding.etSignUpId.text.length in 6..10
                 && binding.etSignUpPw.text.length in 8..12
                 && binding.etSignUpName.text.isNotBlank()
