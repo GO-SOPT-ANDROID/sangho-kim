@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
 import org.android.go.sopt.databinding.ItemFollowerBinding
-import org.android.go.sopt.remote.follower.FollowerResponseDTO
+import org.android.go.sopt.data.remote.FollowerResponseDTO
 
 class FollowerViewHolder(val binding: ItemFollowerBinding) :
     RecyclerView.ViewHolder(binding.root) {

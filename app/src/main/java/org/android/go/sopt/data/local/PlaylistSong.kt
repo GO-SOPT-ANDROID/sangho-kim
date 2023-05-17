@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.playlist
+package org.android.go.sopt.data.local
 
 import androidx.annotation.DrawableRes
 

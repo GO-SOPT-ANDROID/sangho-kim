@@ -1,6 +1,7 @@
 package org.android.go.sopt.presentation.playlist
 
 import androidx.recyclerview.widget.RecyclerView
+import org.android.go.sopt.data.local.PlaylistSong
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 
 class PlaylistViewHolder(val binding: ItemPlaylistSongBinding) :

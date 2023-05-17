@@ -1,4 +1,4 @@
-package org.android.go.sopt.remote.auth
+package org.android.go.sopt.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
-import org.android.go.sopt.remote.follower.FollowerResponseDTO
-import org.android.go.sopt.remote.follower.FollowerServicePool.followerService
+import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.module.FollowerServicePool.followerService
 import org.android.go.sopt.util.makeSnackBar
 import retrofit2.Call
 import retrofit2.Response

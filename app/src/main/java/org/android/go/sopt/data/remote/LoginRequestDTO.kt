@@ -1,16 +1,12 @@
-package org.android.go.sopt.remote.auth
+package org.android.go.sopt.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SignUpRequestDTO(
+data class LoginRequestDTO(
     @SerialName("id")
     val id: String,
     @SerialName("password")
     val password: String,
-    @SerialName("name")
-    val name: String,
-    @SerialName("skill")
-    val skill: String,
 )

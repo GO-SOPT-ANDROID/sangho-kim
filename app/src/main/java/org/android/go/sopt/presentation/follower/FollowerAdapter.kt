@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.databinding.ItemFollowerBinding
-import org.android.go.sopt.remote.follower.FollowerResponseDTO
+import org.android.go.sopt.data.remote.FollowerResponseDTO
 import org.android.go.sopt.util.ItemDiffCallback
 
 class FollowerAdapter :

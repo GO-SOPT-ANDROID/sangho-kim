@@ -1,5 +1,9 @@
-package org.android.go.sopt.remote.auth
+package org.android.go.sopt.data.service
 
+import org.android.go.sopt.data.remote.LoginRequestDTO
+import org.android.go.sopt.data.remote.LoginResponseDTO
+import org.android.go.sopt.data.remote.SignUpRequestDTO
+import org.android.go.sopt.data.remote.SignUpResponseDTO
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.playlist
+package org.android.go.sopt.data.local
 
 data class PlaylistTitle(
     val id: Int,

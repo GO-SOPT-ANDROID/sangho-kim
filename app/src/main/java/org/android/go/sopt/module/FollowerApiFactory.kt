@@ -1,12 +1,11 @@
-package org.android.go.sopt.remote.follower
+package org.android.go.sopt.module
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.android.go.sopt.BuildConfig
-import org.android.go.sopt.remote.auth.AuthService
-import org.android.go.sopt.remote.follower.FollowerService
+import org.android.go.sopt.data.service.FollowerService
 import retrofit2.Retrofit
 
 object FollowerApiFactory {

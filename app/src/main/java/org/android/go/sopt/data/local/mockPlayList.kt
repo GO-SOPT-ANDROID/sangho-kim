@@ -1,6 +1,7 @@
 package org.android.go.sopt.presentation.playlist
 
 import org.android.go.sopt.R
+import org.android.go.sopt.data.local.PlaylistSong
 
 val mockPlayList = listOf<PlaylistSong>(
     PlaylistSong(

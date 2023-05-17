@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
-import org.android.go.sopt.remote.auth.LoginRequestDTO
-import org.android.go.sopt.remote.auth.LoginResponseDTO
-import org.android.go.sopt.remote.auth.AuthServicePool.authService
+import org.android.go.sopt.data.remote.LoginRequestDTO
+import org.android.go.sopt.data.remote.LoginResponseDTO
+import org.android.go.sopt.module.AuthServicePool.authService
 import org.android.go.sopt.util.makeSnackBar
 import org.android.go.sopt.util.makeToast
 import retrofit2.Call
