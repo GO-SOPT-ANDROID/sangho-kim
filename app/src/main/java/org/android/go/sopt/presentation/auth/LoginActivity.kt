@@ -14,8 +14,8 @@ import org.android.go.sopt.presentation.main.MainActivity
 import org.android.go.sopt.data.remote.LoginRequestDTO
 import org.android.go.sopt.data.remote.LoginResponseDTO
 import org.android.go.sopt.module.AuthServicePool.authService
-import org.android.go.sopt.util.makeSnackBar
-import org.android.go.sopt.util.makeToast
+import org.android.go.sopt.util.extension.makeSnackBar
+import org.android.go.sopt.util.extension.makeToast
 import retrofit2.Call
 import retrofit2.Response
 

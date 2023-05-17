@@ -9,7 +9,7 @@ import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.data.remote.FollowerResponseDTO
 import org.android.go.sopt.module.FollowerServicePool.followerService
-import org.android.go.sopt.util.makeSnackBar
+import org.android.go.sopt.util.extension.makeSnackBar
 import retrofit2.Call
 import retrofit2.Response
 

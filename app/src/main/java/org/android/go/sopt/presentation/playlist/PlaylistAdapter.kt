@@ -8,9 +8,11 @@ import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
 class PlaylistAdapter :
-    ListAdapter<PlaylistSong, PlaylistViewHolder>(ItemDiffCallback<PlaylistSong>(
+    ListAdapter<PlaylistSong, PlaylistViewHolder>(
+        ItemDiffCallback<PlaylistSong>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.id == new.id })) {
+        onItemsTheSame = { old, new -> old.id == new.id })
+    ) {
 
     var selectionList = mutableListOf<Int>()
 

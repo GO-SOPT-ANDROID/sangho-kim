@@ -8,9 +8,11 @@ import org.android.go.sopt.data.remote.FollowerResponseDTO
 import org.android.go.sopt.util.ItemDiffCallback
 
 class FollowerAdapter :
-    ListAdapter<FollowerResponseDTO.User, FollowerViewHolder>(ItemDiffCallback<FollowerResponseDTO.User>(
+    ListAdapter<FollowerResponseDTO.User, FollowerViewHolder>(
+        ItemDiffCallback<FollowerResponseDTO.User>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.id == new.id })) {
+        onItemsTheSame = { old, new -> old.id == new.id })
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {
         val binding: ItemFollowerBinding =

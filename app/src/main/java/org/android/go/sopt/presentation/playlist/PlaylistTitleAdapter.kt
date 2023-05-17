@@ -8,9 +8,11 @@ import org.android.go.sopt.databinding.ItemPlaylistTitleBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
 class PlaylistTitleAdapter() :
-    ListAdapter<PlaylistTitle, PlaylistTitleViewHolder>(ItemDiffCallback<PlaylistTitle>(
+    ListAdapter<PlaylistTitle, PlaylistTitleViewHolder>(
+        ItemDiffCallback<PlaylistTitle>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.id == new.id })) {
+        onItemsTheSame = { old, new -> old.id == new.id })
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistTitleViewHolder {
         val binding: ItemPlaylistTitleBinding =

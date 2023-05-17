@@ -13,7 +13,7 @@ import org.android.go.sopt.data.remote.SignUpResponseDTO
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.module.AuthServicePool.authService
 import org.android.go.sopt.util.KeyboardVisibilityUtils
-import org.android.go.sopt.util.makeSnackBar
+import org.android.go.sopt.util.extension.makeSnackBar
 import retrofit2.Call
 import retrofit2.Response
 
