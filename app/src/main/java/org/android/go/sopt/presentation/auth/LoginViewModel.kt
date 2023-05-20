@@ -1,17 +1,24 @@
 package org.android.go.sopt.presentation.auth
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.remote.LoginRequestDTO
 import org.android.go.sopt.data.remote.LoginResponseDTO
+import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.module.AuthServicePool.authService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 class LoginViewModel : ViewModel() {
-    val loginResult: MutableLiveData<LoginResponseDTO> = MutableLiveData()
+    private val _loginResult: MutableLiveData<LoginResponseDTO> = MutableLiveData()
+    val loginResult: LiveData<LoginResponseDTO> = _loginResult
+
+    private val _errorResult: MutableLiveData<String> = MutableLiveData()
+    val errorResult: LiveData<String> = _errorResult
+
+    private lateinit var binding: ActivityLoginBinding
 
     fun login(id: String, password: String) {
         authService.login(
@@ -25,16 +32,15 @@ class LoginViewModel : ViewModel() {
                 response: Response<LoginResponseDTO>
             ) {
                 if (response.isSuccessful) {
-                    loginResult.value = response.body()
+                    _loginResult.value = response.body()
                 } else {
-                    Timber.d("서버 통신 실패")
+                    _errorResult.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponseDTO>, t: Throwable) {
-                Timber.d("서버 통신 실패")
+                _errorResult.value = t.toString()
             }
         })
     }
-
 }

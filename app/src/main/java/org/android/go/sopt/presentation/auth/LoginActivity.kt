@@ -7,22 +7,21 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
-import org.android.go.sopt.data.remote.LoginRequestDTO
-import org.android.go.sopt.data.remote.LoginResponseDTO
-import org.android.go.sopt.module.AuthServicePool.authService
 import org.android.go.sopt.util.extension.makeSnackBar
 import org.android.go.sopt.util.extension.makeToast
-import retrofit2.Call
-import retrofit2.Response
+import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +46,22 @@ class LoginActivity : AppCompatActivity() {
             loginWithServer()
         }
 
+        // 뷰모델 observer 설정
+        viewModel.loginResult.observe(this) { loginResult ->
+            binding.root.makeToast(getString(R.string.toast_login_success))
+
+            val idFromServer = loginResult.data.id
+            editor.putString("id", idFromServer)
+            editor.apply()
+
+            val intent = Intent(binding.root.context, MainActivity::class.java)
+            startActivityWithFlags(intent)
+        }
+        viewModel.errorResult.observe(this) { errorResult ->
+            Timber.d("서버 통신 실패 : $errorResult")
+            binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
+        }
+
         // 화면 터치로 키보드 내리기
         binding.root.setOnClickListener {
             hideKeyboard(this)
@@ -57,35 +72,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginWithServer() {
-        authService.login(
-            with(binding) {
-                LoginRequestDTO(
-                    etLoginId.text.toString(),
-                    etLoginPw.text.toString(),
-                )
-            }
-        ).enqueue(object : retrofit2.Callback<LoginResponseDTO> {
-            override fun onResponse(
-                call: Call<LoginResponseDTO>,
-                response: Response<LoginResponseDTO>
-            ) {
-                if (response.isSuccessful) {
-                    binding.root.makeToast(getString(R.string.toast_login_success))
-
-                    val idFromServer = response.body()?.data?.id.toString()
-                    editor.putString("id", idFromServer)
-                    editor.apply()
-
-                    val intent = Intent(binding.root.context, MainActivity::class.java)
-                    startActivityWithFlags(intent)
-                } else {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
-                }
-            }
-            override fun onFailure(call: Call<LoginResponseDTO>, t: Throwable) {
-                binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
-            }
-        })
+        viewModel.login(
+            binding.etLoginId.text.toString(),
+            binding.etLoginPw.text.toString()
+        )
     }
 
     private fun autologin() {
