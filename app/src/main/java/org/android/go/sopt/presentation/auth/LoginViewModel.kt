@@ -18,8 +18,6 @@ class LoginViewModel : ViewModel() {
     private val _errorResult: MutableLiveData<String> = MutableLiveData()
     val errorResult: LiveData<String> = _errorResult
 
-    private lateinit var binding: ActivityLoginBinding
-
     fun login(id: String, password: String) {
         authService.login(
             LoginRequestDTO(
