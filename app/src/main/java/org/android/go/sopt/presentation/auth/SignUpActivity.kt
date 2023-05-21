@@ -55,7 +55,7 @@ class SignUpActivity : AppCompatActivity() {
         }
         viewModel.errorResult.observe(this) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
-            binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
+            binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
 
         // 화면 터치로 키보드 내리기
