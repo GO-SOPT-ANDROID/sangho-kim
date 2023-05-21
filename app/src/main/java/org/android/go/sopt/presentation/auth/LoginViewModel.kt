@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.remote.LoginRequestDTO
 import org.android.go.sopt.data.remote.LoginResponseDTO
-import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.module.AuthServicePool.authService
 import retrofit2.Call
 import retrofit2.Callback
