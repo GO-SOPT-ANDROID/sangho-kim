@@ -38,7 +38,7 @@ class FollowerFragment : Fragment() {
 
         // 뷰모델 observer 설정
         viewModel.followerResult.observe(viewLifecycleOwner) {followerResult ->
-            val responseList = followerList.toMutableList()
+            val responseList = followerResult.data.toMutableList()
             responseList.let {
                 followerList.addAll(responseList)
             }
