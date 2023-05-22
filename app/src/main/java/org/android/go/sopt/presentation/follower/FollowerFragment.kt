@@ -45,10 +45,10 @@ class FollowerFragment : Fragment() {
             }
             followerAdapter.submitList(followerList.toList())
 
+            // 두 페이지의 12명이 모두 들어올 때까지 보이도록 설정
             if (followerList.size == 12) {
                 binding.progressBarFollower.visibility = View.GONE
             }
-
         }
         viewModel.errorResult.observe(viewLifecycleOwner) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
