@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import kotlinx.coroutines.delay
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.data.remote.FollowerResponseDTO
@@ -43,6 +44,11 @@ class FollowerFragment : Fragment() {
                 followerList.addAll(responseList)
             }
             followerAdapter.submitList(followerList.toList())
+
+            if (followerList.size == 12) {
+                binding.progressBarFollower.visibility = View.GONE
+            }
+
         }
         viewModel.errorResult.observe(viewLifecycleOwner) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
