@@ -10,27 +10,16 @@ import kotlinx.coroutines.delay
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeSnackBar
 import timber.log.Timber
 
-class FollowerFragment : Fragment() {
-    private var _binding: FragmentFollowerBinding? = null
-    private val binding: FragmentFollowerBinding
-        get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
+class FollowerFragment :  BindingFragment<FragmentFollowerBinding>(R.layout.fragment_follower){
 
     private val viewModel by viewModels<FollowerViewModel>()
 
     private val followerList = mutableListOf<FollowerResponseDTO.User>()
     private val followerAdapter = FollowerAdapter()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFollowerBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,10 +47,5 @@ class FollowerFragment : Fragment() {
         // 서버 통신으로 User 리스트 받아오기
         viewModel.addListFromServer(1)
         viewModel.addListFromServer(2)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
