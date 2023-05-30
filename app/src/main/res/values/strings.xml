@@ -38,5 +38,6 @@
 
     <string name="dialog_account_logout_title">로그아웃 하시겠습니까?</string>
     <string name="dialog_account_logout_text">자동로그인이 해제됩니다</string>
+    <string name="btn_account_logout">LOGOUT</string>
 
 </resources>
