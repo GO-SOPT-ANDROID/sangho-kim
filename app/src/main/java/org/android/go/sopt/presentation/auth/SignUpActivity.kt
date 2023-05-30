@@ -3,7 +3,6 @@ package org.android.go.sopt.presentation.auth
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -11,18 +10,17 @@ import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
+import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
 import timber.log.Timber
 
-class SignUpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignUpBinding
+class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 텍스트 입력을 감지해서 조건 만족 시 버튼 활성화
@@ -45,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         // 뷰모델 observer 설정
-        viewModel.signUpResult.observe(this) {signUpResult ->
+        viewModel.signUpResult.observe(this) { signUpResult ->
             binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
             if (!isFinishing) {
                 val intent = Intent(binding.root.context, LoginActivity::class.java)

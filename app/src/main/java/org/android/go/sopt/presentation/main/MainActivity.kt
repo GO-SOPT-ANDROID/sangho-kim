@@ -1,6 +1,5 @@
 package org.android.go.sopt.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
@@ -12,9 +11,10 @@ import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.follower.FollowerFragment
 import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.presentation.search.SearchFragment
+import org.android.go.sopt.util.base.BindingActivity
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
+
     private lateinit var listFragment: ListFragment
     private lateinit var albumFragment: AlbumFragment
     private lateinit var searchFragment: SearchFragment
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 시작 Fragment 설정
@@ -44,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             ?: supportFragmentManager.beginTransaction().add(R.id.fcv_main, listFragment).commit()
     }
 
+    // 바텀 네비게이션 누를 때마다 새로운 프래그먼트 객체가 생성되지 않도록 설정
     private fun changeFragmentByBnv() {
         binding.bnvMain.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun scrollToTopForReselectedItem(item : MenuItem) {
+    private fun scrollToTopForReselectedItem(item: MenuItem) {
         if (item.itemId == R.id.menu_playlist) {
             when (val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)) {
                 is ListFragment -> {
