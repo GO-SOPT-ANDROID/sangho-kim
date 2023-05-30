@@ -15,6 +15,7 @@ import org.android.go.sopt.util.extension.makeSnackBar
 import timber.log.Timber
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
+
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     private val viewModel by viewModels<SignUpViewModel>()
@@ -61,7 +62,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             hideKeyboard(this)
         }
 
-        // 받아온 클래스 활용해 스크롤뷰에 적용
+        // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
         keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
             onShowKeyboard = { keyboardHeight ->
                 binding.svSignUp.run {
