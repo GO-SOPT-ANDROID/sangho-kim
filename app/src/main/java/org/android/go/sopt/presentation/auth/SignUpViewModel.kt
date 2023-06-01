@@ -17,18 +17,19 @@ class SignUpViewModel : ViewModel() {
     private val _errorResult: MutableLiveData<String> = MutableLiveData()
     val errorResult: LiveData<String> = _errorResult
 
+    val idText: MutableLiveData<String> = MutableLiveData("")
+    val pwText: MutableLiveData<String> = MutableLiveData("")
+    val nameText: MutableLiveData<String> = MutableLiveData("")
+    val skillText: MutableLiveData<String> = MutableLiveData("")
+
     fun signUp(id: String, password: String, name: String, skill: String) {
         AuthServicePool.authService.signUp(
             SignUpRequestDTO(
-                id,
-                password,
-                name,
-                skill
+                id, password, name, skill
             )
         ).enqueue(object : Callback<SignUpResponseDTO> {
             override fun onResponse(
-                call: Call<SignUpResponseDTO>,
-                response: Response<SignUpResponseDTO>
+                call: Call<SignUpResponseDTO>, response: Response<SignUpResponseDTO>
             ) {
                 if (response.isSuccessful) {
                     _signUpResult.value = response.body()
