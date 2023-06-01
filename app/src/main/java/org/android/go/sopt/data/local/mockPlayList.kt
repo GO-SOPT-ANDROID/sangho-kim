@@ -44,7 +44,7 @@ val mockPlayList = listOf<PlaylistSong>(
         id = 6,
         album = R.drawable.img_song_basecamp,
         artist = "basecamp",
-        title = "How to say (feat. Dvwn)",
+        title = "How to say (w/ Dvwn)",
     ),
     PlaylistSong(
         id = 7,
