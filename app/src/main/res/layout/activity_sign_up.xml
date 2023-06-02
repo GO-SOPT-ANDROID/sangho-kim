@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
-                android:enabled="@{vm.buttonVaild}"
+                android:enabled="@{vm.buttonValid}"
                 android:paddingVertical="10dp"
                 android:text="@string/btn_login_sign_up"
                 android:textSize="15sp"
