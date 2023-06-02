@@ -48,28 +48,28 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_sign_up_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_title" />
-            
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_id"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id">
-                
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sign_up_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
-                    android:text="@={vm.idText}"
                     android:hint="@string/et_signup_id_hint"
                     android:imeOptions="actionNext"
-                    android:inputType="text"/>
-                
+                    android:inputType="text"
+                    android:text="@={vm.idText}" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -85,10 +85,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_pw"
-                android:layout_width="0dp"
-
-                android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,10 +100,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
-                    android:text="@={vm.pwText}"
                     android:hint="@string/et_signup_pw_hint"
                     android:imeOptions="actionNext"
-                    android:inputType="text"/>
+                    android:inputType="text"
+                    android:text="@={vm.pwText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,25 +119,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_pw" />
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_name" >
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sign_up_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.nameText}"
                     android:imeOptions="actionNext"
-                    android:inputType="text"/>
+                    android:inputType="text"
+                    android:text="@={vm.nameText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,22 +154,22 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_skill"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_skill" >
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_skill">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sign_up_skill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.skillText}"
                     android:imeOptions="actionNext"
-                    android:inputType="text"/>
+                    android:inputType="text"
+                    android:text="@={vm.skillText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

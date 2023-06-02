@@ -11,7 +11,6 @@ import org.android.go.sopt.module.AuthServicePool
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
@@ -70,7 +69,7 @@ class SignUpViewModel : ViewModel() {
     fun setButtonState() {
         buttonVaild.value =
             (isIdValid.value == true && isPwValid.value == true && idText.value!!.isNotBlank() && pwText.value!!.isNotBlank())
-        Log.d("qqqq","${buttonVaild}")
+        Log.d("qqqq", "${buttonVaild}")
     }
 
     companion object {

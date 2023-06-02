@@ -84,8 +84,8 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     private fun setKeyboardHeight() {
-        keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
-            onShowKeyboard = { keyboardHeight ->
+        keyboardVisibilityUtils =
+            KeyboardVisibilityUtils(window, onShowKeyboard = { keyboardHeight ->
                 binding.svSignUp.run {
                     smoothScrollTo(scrollX, scrollY + keyboardHeight)
                 }
