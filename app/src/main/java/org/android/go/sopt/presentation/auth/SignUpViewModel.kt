@@ -2,6 +2,7 @@ package org.android.go.sopt.presentation.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.remote.SignUpRequestDTO
 import org.android.go.sopt.data.remote.SignUpResponseDTO
@@ -9,6 +10,7 @@ import org.android.go.sopt.module.AuthServicePool
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
     private val _signUpResult: MutableLiveData<SignUpResponseDTO> = MutableLiveData()
@@ -21,6 +23,11 @@ class SignUpViewModel : ViewModel() {
     val pwText: MutableLiveData<String> = MutableLiveData("")
     val nameText: MutableLiveData<String> = MutableLiveData("")
     val skillText: MutableLiveData<String> = MutableLiveData("")
+
+    val isIdValid: LiveData<Boolean> = Transformations.map(idText) { checkIdValid(it) }
+    val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { checkPwValid(it) }
+
+    val buttonVaild: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun signUp(id: String, password: String, name: String, skill: String) {
         AuthServicePool.authService.signUp(
@@ -42,5 +49,29 @@ class SignUpViewModel : ViewModel() {
                 _errorResult.value = t.toString()
             }
         })
+    }
+
+    private fun checkIdValid(id: String): Boolean {
+        if (id == "") return true
+        val pattern = Pattern.compile(ID_PATTERN)
+        val matcher = pattern.matcher(id)
+        return matcher.matches()
+    }
+
+    private fun checkPwValid(pw: String): Boolean {
+        if (pw == "") return true
+        val pattern = Pattern.compile(PW_PATTERN)
+        val matcher = pattern.matcher(pw)
+        return matcher.matches()
+    }
+
+    fun setButtonState() {
+        buttonVaild.value =
+            (isIdValid.value == true && isPwValid.value == true && idText.value!!.isNotBlank() && pwText.value!!.isNotBlank())
+    }
+
+    companion object {
+        const val ID_PATTERN = "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{8,20}$"
+        const val PW_PATTERN = "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{8,20}\$"
     }
 }

@@ -24,26 +24,37 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 텍스트 입력을 감지해서 조건 만족 시 버튼 활성화
-        binding.etSignUpId.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpPw.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpName.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpSkill.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
+        binding.vm = viewModel
+
+        observeSignUpFormat()
+        observeSignUpResult()
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
             signUpWithServer()
         }
 
-        // 뷰모델 observer 설정
+        // 화면 터치로 키보드 내리기
+        binding.root.setOnClickListener {
+            hideKeyboard(this)
+        }
+
+        // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
+        setKeyboardHeight()
+    }
+
+    private fun observeSignUpFormat() {
+        viewModel.isIdValid.observe(this) { isIdValid ->
+            binding.layoutEtPw.error = if (isIdValid) "" else "아이디 형식이 올바르지 않습니다."
+            viewModel.setButtonState()
+        }
+        viewModel.isPwValid.observe(this) { isPwValid ->
+            binding.layoutEtPw.error = if (isPwValid) "" else "비밀번호 형식이 올바르지 않습니다."
+            viewModel.setButtonState()
+        }
+    }
+
+    private fun observeSignUpResult() {
         viewModel.signUpResult.observe(this) { signUpResult ->
             binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
             if (!isFinishing) {
@@ -56,19 +67,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
-
-        // 화면 터치로 키보드 내리기
-        binding.root.setOnClickListener {
-            hideKeyboard(this)
-        }
-
-        // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
-        keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
-            onShowKeyboard = { keyboardHeight ->
-                binding.svSignUp.run {
-                    smoothScrollTo(scrollX, scrollY + keyboardHeight)
-                }
-            })
     }
 
     private fun signUpWithServer() {
@@ -85,10 +83,12 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
     }
 
-    private fun checkUserSignIn(): Boolean {
-        return binding.etSignUpId.text.length in 6..10
-                && binding.etSignUpPw.text.length in 8..12
-                && binding.etSignUpName.text.isNotBlank()
-                && binding.etSignUpSkill.text.isNotBlank()
+    private fun setKeyboardHeight() {
+        keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
+            onShowKeyboard = { keyboardHeight ->
+                binding.svSignUp.run {
+                    smoothScrollTo(scrollX, scrollY + keyboardHeight)
+                }
+            })
     }
 }
