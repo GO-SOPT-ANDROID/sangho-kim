@@ -48,21 +48,29 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_sign_up_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_title" />
-
-            <EditText
-                android:id="@+id/et_sign_up_id"
+            
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sign_up_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
-                android:autofillHints="username"
-                android:hint="@string/et_signup_id_hint"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:text="@={vm.idText}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id" />
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id">
+                
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sign_up_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:text="@={vm.idText}"
+                    android:hint="@string/et_signup_id_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"/>
+                
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_sign_up_pw"
@@ -73,23 +81,31 @@
                 android:text="@string/tv_signup_pw_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/et_sign_up_id"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_id" />
+                app:layout_constraintStart_toStartOf="@id/layout_sign_up_id"
+                app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_id" />
 
-            <EditText
-                android:id="@+id/et_sign_up_pw"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sign_up_pw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
-                android:autofillHints="password"
-                android:hint="@string/et_signup_pw_hint"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:text="@={vm.pwText}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_pw" />
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_pw">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sign_up_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:text="@={vm.pwText}"
+                    android:hint="@string/et_signup_pw_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_sign_up_name"
@@ -100,8 +116,8 @@
                 android:text="@string/tv_signup_name_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/et_sign_up_pw"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_pw" />
+                app:layout_constraintStart_toStartOf="@id/layout_sign_up_pw"
+                app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_pw" />
 
             <EditText
                 android:id="@+id/et_sign_up_name"
@@ -151,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
-                android:enabled="false"
+                android:enabled="@{vm.buttonVaild}"
                 android:paddingVertical="10dp"
                 android:text="@string/btn_login_sign_up"
                 android:textSize="15sp"

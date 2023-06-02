@@ -45,11 +45,11 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
     private fun observeSignUpFormat() {
         viewModel.isIdValid.observe(this) { isIdValid ->
-            binding.layoutEtPw.error = if (isIdValid) "" else "아이디 형식이 올바르지 않습니다."
+            binding.layoutSignUpId.error = if (isIdValid) "" else "아이디 형식이 올바르지 않습니다."
             viewModel.setButtonState()
         }
         viewModel.isPwValid.observe(this) { isPwValid ->
-            binding.layoutEtPw.error = if (isPwValid) "" else "비밀번호 형식이 올바르지 않습니다."
+            binding.layoutSignUpPw.error = if (isPwValid) "" else "비밀번호 형식이 올바르지 않습니다."
             viewModel.setButtonState()
         }
     }

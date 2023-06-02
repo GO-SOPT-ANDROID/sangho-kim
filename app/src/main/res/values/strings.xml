@@ -11,9 +11,9 @@
 
     <string name="tv_signup_title">회원가입</string>
     <string name="tv_signup_id_title">아이디</string>
-    <string name="et_signup_id_hint">아이디를 6~10글자로 입력하세요.</string>
+    <string name="et_signup_id_hint">영문, 숫자 포함 6~10자</string>
     <string name="tv_signup_pw_title">비밀번호</string>
-    <string name="et_signup_pw_hint">비밀번호를 8~12글자로 입력하세요.</string>
+    <string name="et_signup_pw_hint">영문, 숫자, 특수문자 포함 6~12자</string>
     <string name="tv_signup_name_title">이름</string>
     <string name="et_signup_name_hint">이름을 입력하세요.</string>
     <string name="tv_signup_skill_title">특기</string>
