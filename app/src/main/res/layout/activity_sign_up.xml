@@ -76,7 +76,7 @@
                 android:id="@+id/tv_sign_up_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:padding="2dp"
                 android:text="@string/tv_signup_pw_title"
                 android:textSize="20sp"
@@ -111,7 +111,7 @@
                 android:id="@+id/tv_sign_up_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:padding="2dp"
                 android:text="@string/tv_signup_name_title"
                 android:textSize="20sp"
@@ -119,47 +119,61 @@
                 app:layout_constraintStart_toStartOf="@id/layout_sign_up_pw"
                 app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_pw" />
 
-            <EditText
-                android:id="@+id/et_sign_up_name"
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sign_up_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
-                android:autofillHints="name"
-                android:hint="@string/et_signup_name_hint"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:text="@={vm.nameText}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_name" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sign_up_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={vm.nameText}"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_sign_up_skill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:padding="2dp"
                 android:text="@string/tv_signup_skill_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/et_sign_up_name"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_name" />
+                app:layout_constraintStart_toStartOf="@id/layout_sign_up_name"
+                app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_name" />
 
-            <EditText
-                android:id="@+id/et_sign_up_skill"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sign_up_skill"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
-                android:autofillHints="name"
-                android:hint="@string/et_signup_skill_hint"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:text="@={vm.skillText}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_skill" />
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_up_skill" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sign_up_skill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={vm.skillText}"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_sign_up"
@@ -174,7 +188,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_skill" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_sign_up_skill" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
