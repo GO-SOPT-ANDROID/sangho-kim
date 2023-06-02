@@ -76,7 +76,6 @@
                 android:id="@+id/tv_sign_up_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:padding="2dp"
                 android:text="@string/tv_signup_pw_title"
                 android:textSize="20sp"
@@ -87,6 +86,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_pw"
                 android:layout_width="0dp"
+
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginHorizontal="30dp"
@@ -111,7 +111,6 @@
                 android:id="@+id/tv_sign_up_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:padding="2dp"
                 android:text="@string/tv_signup_name_title"
                 android:textSize="20sp"

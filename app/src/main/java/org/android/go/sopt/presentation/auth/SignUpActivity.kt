@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.core.widget.doAfterTextChanged
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
@@ -25,6 +24,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         setContentView(binding.root)
 
         binding.vm = viewModel
+        binding.lifecycleOwner = this
 
         observeSignUpFormat()
         observeSignUpResult()
