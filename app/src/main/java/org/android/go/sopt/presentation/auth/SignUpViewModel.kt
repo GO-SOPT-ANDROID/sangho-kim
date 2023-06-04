@@ -27,7 +27,7 @@ class SignUpViewModel : ViewModel() {
     val isIdValid: LiveData<Boolean> = Transformations.map(idText) { checkIdValid(it) }
     val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { checkPwValid(it) }
 
-    val buttonValid: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isButtonValid: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun signUp(id: String, password: String, name: String, skill: String) {
         AuthServicePool.authService.signUp(
@@ -66,7 +66,7 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun setButtonState() {
-        buttonValid.value =
+        isButtonValid.value =
             (isIdValid.value == true && isPwValid.value == true && idText.value!!.isNotBlank() && pwText.value!!.isNotBlank())
     }
 
