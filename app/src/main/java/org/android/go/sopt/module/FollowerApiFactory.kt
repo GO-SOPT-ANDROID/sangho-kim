@@ -22,11 +22,9 @@ object FollowerApiFactory {
 
     @OptIn(ExperimentalSerializationApi::class)
     val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
+        Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-            .client(client)
-            .build()
+            .client(client).build()
     }
 
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
