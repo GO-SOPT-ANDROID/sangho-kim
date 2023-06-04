@@ -65,7 +65,7 @@ class SignUpViewModel : ViewModel() {
         return matcher.matches()
     }
 
-    fun setButtonState() {
+    fun checkButtonValid() {
         isButtonValid.value =
             (isIdValid.value == true && isPwValid.value == true && idText.value!!.isNotBlank() && pwText.value!!.isNotBlank())
     }
