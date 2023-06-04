@@ -86,7 +86,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_sign_up_pw"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -102,7 +101,7 @@
                     android:autofillHints="username"
                     android:hint="@string/et_signup_pw_hint"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:text="@={vm.pwText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
