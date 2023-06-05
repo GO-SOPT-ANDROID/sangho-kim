@@ -166,7 +166,7 @@
                     android:id="@+id/et_sign_up_skill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
                     android:text="@={vm.skillText}" />
 

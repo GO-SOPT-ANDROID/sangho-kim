@@ -29,10 +29,10 @@ class SignUpViewModel : ViewModel() {
 
     val isButtonValid: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun signUp(id: String, password: String, name: String, skill: String) {
+    fun signUp() {
         AuthServicePool.authService.signUp(
             SignUpRequestDTO(
-                id, password, name, skill
+                idText.toString(), pwText.toString(), nameText.toString(), skillText.toString()
             )
         ).enqueue(object : Callback<SignUpResponseDTO> {
             override fun onResponse(

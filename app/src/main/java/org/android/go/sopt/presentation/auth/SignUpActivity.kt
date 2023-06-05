@@ -31,7 +31,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
-            signUpWithServer()
+            viewModel.signUp()
         }
 
         // 화면 터치로 키보드 내리기
@@ -67,15 +67,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
-    }
-
-    private fun signUpWithServer() {
-        viewModel.signUp(
-            binding.etSignUpId.text.toString(),
-            binding.etSignUpPw.text.toString(),
-            binding.etSignUpName.text.toString(),
-            binding.etSignUpSkill.text.toString()
-        )
     }
 
     private fun hideKeyboard(activity: Activity) {
