@@ -1,9 +1,10 @@
 package org.android.go.sopt.presentation.auth
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import org.android.go.sopt.R
@@ -32,11 +33,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
             viewModel.signUp()
-        }
-
-        // 화면 터치로 키보드 내리기
-        binding.root.setOnClickListener {
-            hideKeyboard(this)
         }
 
         // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
@@ -69,11 +65,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
     }
 
-    private fun hideKeyboard(activity: Activity) {
-        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
-    }
-
     private fun setKeyboardHeight() {
         keyboardVisibilityUtils =
             KeyboardVisibilityUtils(window, onShowKeyboard = { keyboardHeight ->
@@ -81,5 +72,23 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                     smoothScrollTo(scrollX, scrollY + keyboardHeight)
                 }
             })
+    }
+
+    // 키보드 바깥을 누르면 키보드 숨김 & 포커스 해제
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val focusView: View? = currentFocus
+        if (focusView != null) {
+            val rect = Rect()
+            focusView.getGlobalVisibleRect(rect)
+            val x = ev.x.toInt()
+            val y = ev.y.toInt()
+            if (!rect.contains(x, y)) {
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(focusView.windowToken, 0)
+                focusView.clearFocus()
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

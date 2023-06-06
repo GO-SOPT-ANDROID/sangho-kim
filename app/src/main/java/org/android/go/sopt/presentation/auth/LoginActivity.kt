@@ -1,10 +1,11 @@
 package org.android.go.sopt.presentation.auth
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -64,11 +65,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
 
-        // 화면 터치로 키보드 내리기
-        binding.root.setOnClickListener {
-            hideKeyboard(this)
-        }
-
         // 자동로그인 설정
         autologin()
     }
@@ -97,8 +93,21 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         finish()
     }
 
-    private fun hideKeyboard(activity: Activity) {
-        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
+    // 키보드 바깥을 누르면 키보드 숨김 & 포커스 해제
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val focusView: View? = currentFocus
+        if (focusView != null) {
+            val rect = Rect()
+            focusView.getGlobalVisibleRect(rect)
+            val x = ev.x.toInt()
+            val y = ev.y.toInt()
+            if (!rect.contains(x, y)) {
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(focusView.windowToken, 0)
+                focusView.clearFocus()
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }
