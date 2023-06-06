@@ -15,15 +15,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="40dp"
             android:paddingTop="80dp"
             android:text="@string/tv_login_title"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:layout_marginBottom="40dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_login_id"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_login_id"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_login_id"
@@ -33,27 +33,28 @@
             android:text="@string/tv_login_id_title"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_login_title"
-            app:layout_constraintBottom_toTopOf="@id/layout_login_id"/>
+            app:layout_constraintBottom_toTopOf="@id/layout_login_id"
+            app:layout_constraintStart_toStartOf="@id/tv_login_title" />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_login_id"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_marginBottom="15dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_login_pw"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_login_pw">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_login_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,27 +66,28 @@
             android:text="@string/tv_login_pw_title"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_login_title"
-            app:layout_constraintBottom_toTopOf="@id/layout_login_pw"/>
+            app:layout_constraintBottom_toTopOf="@id/layout_login_pw"
+            app:layout_constraintStart_toStartOf="@id/tv_login_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_login_pw"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_login">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_login_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
                 android:autofillHints="password"
-                android:inputType="textPassword" />
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +101,7 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_sign_up"

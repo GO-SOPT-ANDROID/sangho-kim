@@ -68,6 +68,7 @@
                     android:hint="@string/et_signup_id_hint"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:maxLines="1"
                     android:text="@={vm.idText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -102,6 +103,7 @@
                     android:hint="@string/et_signup_pw_hint"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
+                    android:maxLines="1"
                     android:text="@={vm.pwText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:maxLines="1"
                     android:text="@={vm.nameText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -168,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
                     android:inputType="text"
+                    android:maxLines="1"
                     android:text="@={vm.skillText}" />
 
             </com.google.android.material.textfield.TextInputLayout>
