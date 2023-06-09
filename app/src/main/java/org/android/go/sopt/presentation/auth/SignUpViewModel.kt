@@ -24,8 +24,12 @@ class SignUpViewModel : ViewModel() {
     val nameText: MutableLiveData<String> = MutableLiveData("")
     val skillText: MutableLiveData<String> = MutableLiveData("")
 
-    val isIdValid: LiveData<Boolean> = Transformations.map(idText) { checkIdValid(it) }
-    val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { checkPwValid(it) }
+    val isIdValid: LiveData<Boolean> = Transformations.map(idText) { id ->
+        checkIdValid(id)
+    }
+    val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { pw ->
+        checkPwValid(pw)
+    }
 
     val isButtonValid: MutableLiveData<Boolean> = MutableLiveData(false)
 
@@ -71,7 +75,7 @@ class SignUpViewModel : ViewModel() {
     }
 
     companion object {
-        const val ID_PATTERN = """^(?=.*[a-zA-Z])(?=.*\d).{6,10}$"""
-        const val PW_PATTERN = """^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()?]).{6,12}$"""
+        private const val ID_PATTERN = """^(?=.*[a-zA-Z])(?=.*\d).{6,10}$"""
+        private const val PW_PATTERN = """^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()?]).{6,12}$"""
     }
 }
