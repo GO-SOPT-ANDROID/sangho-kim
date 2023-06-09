@@ -18,14 +18,15 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
     private val followerList = mutableListOf<FollowerResponseDTO.User>()
     private val followerAdapter = FollowerAdapter()
 
-    private var _loadingDialog: LoadingDialogFragment? = null
-    val loadingDialog get() = requireNotNull(_loadingDialog!!) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
+    private lateinit var loadingDialogFragment: LoadingDialogFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rvFollower.adapter = followerAdapter
-        _loadingDialog = LoadingDialogFragment()
+
+        loadingDialogFragment = LoadingDialogFragment()
+        parentFragmentManager.beginTransaction().add(R.id.fcv_main, loadingDialogFragment).commit()
 
         // 뷰모델 observer 설정
         viewModel.followerResult.observe(viewLifecycleOwner) { followerResult ->
@@ -37,7 +38,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
 
             // 두 페이지의 12명이 모두 들어올 때까지 보이도록 설정
             if (followerList.size == 12) {
-                binding.progressBarFollower.visibility = View.GONE
+                loadingDialogFragment.dismiss()
             }
         }
         viewModel.errorResult.observe(viewLifecycleOwner) { errorResult ->

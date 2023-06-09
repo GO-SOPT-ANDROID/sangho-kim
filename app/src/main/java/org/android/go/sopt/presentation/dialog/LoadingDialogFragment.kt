@@ -12,10 +12,6 @@ class LoadingDialogFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initDialogCancelable()
-    }
-
-    private fun initDialogCancelable() {
         dialog?.setCancelable(false)
     }
 }
