@@ -20,8 +20,6 @@ import timber.log.Timber
 
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
-    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
-
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
