@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.playlist
+package org.android.go.sopt.data.local
 
 import org.android.go.sopt.R
 import org.android.go.sopt.data.local.PlaylistSong

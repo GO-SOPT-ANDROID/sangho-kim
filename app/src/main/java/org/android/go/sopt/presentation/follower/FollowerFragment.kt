@@ -25,8 +25,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
 
         binding.rvFollower.adapter = followerAdapter
 
-        loadingDialogFragment = LoadingDialogFragment()
-        parentFragmentManager.beginTransaction().add(R.id.fcv_main, loadingDialogFragment).commit()
+        startLoadingDialog()
 
         // 뷰모델 observer 설정
         viewModel.followerResult.observe(viewLifecycleOwner) { followerResult ->
@@ -49,5 +48,10 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         // 서버 통신으로 User 리스트 받아오기
         viewModel.addListFromServer(1)
         viewModel.addListFromServer(2)
+    }
+
+    private fun startLoadingDialog() {
+        loadingDialogFragment = LoadingDialogFragment()
+        parentFragmentManager.beginTransaction().add(R.id.fcv_main, loadingDialogFragment).commit()
     }
 }

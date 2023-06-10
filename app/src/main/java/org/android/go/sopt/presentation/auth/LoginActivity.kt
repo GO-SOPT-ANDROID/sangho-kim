@@ -29,10 +29,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 야간모드 무시
+        // 야간 모드 무시
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        // 자동로그인 위한 객체 생성
+        // 자동 로그인 위한 객체 생성
         sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
@@ -48,9 +48,24 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
 
         // 뷰모델 observer 설정
+        observeLoginResult()
+        observeLoginError()
+
+        // 자동 로그인 설정
+        autologin()
+    }
+
+    private fun loginWithServer() {
+        viewModel.login(
+            binding.etLoginId.text.toString(), binding.etLoginPw.text.toString()
+        )
+    }
+
+    private fun observeLoginResult() {
         viewModel.loginResult.observe(this) { loginResult ->
             binding.root.makeToast(getString(R.string.toast_login_success))
 
+            // 자동 로그인 위해 통신 데이터 저장
             val idFromServer = loginResult.data.id
             editor.putString("id", idFromServer)
             editor.apply()
@@ -58,20 +73,13 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             val intent = Intent(binding.root.context, MainActivity::class.java)
             startActivityWithFlags(intent)
         }
+    }
+
+    private fun observeLoginError() {
         viewModel.errorResult.observe(this) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
-
-        // 자동로그인 설정
-        autologin()
-    }
-
-    private fun loginWithServer() {
-        viewModel.login(
-            binding.etLoginId.text.toString(),
-            binding.etLoginPw.text.toString()
-        )
     }
 
     private fun autologin() {

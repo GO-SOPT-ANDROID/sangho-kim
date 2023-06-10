@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.ConcatAdapter
 import org.android.go.sopt.R
+import org.android.go.sopt.data.local.mockPlayList
+import org.android.go.sopt.data.local.mockPlayListTitle
 import org.android.go.sopt.databinding.FragmentListBinding
 import org.android.go.sopt.util.base.BindingFragment
 
