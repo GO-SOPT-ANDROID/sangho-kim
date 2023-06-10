@@ -1,38 +1,38 @@
 package org.android.go.sopt.presentation.auth
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
-import org.android.go.sopt.data.remote.LoginRequestDTO
-import org.android.go.sopt.data.remote.LoginResponseDTO
-import org.android.go.sopt.module.AuthServicePool.authService
+import org.android.go.sopt.util.KeyboardVisibilityUtils
+import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
 import org.android.go.sopt.util.extension.makeToast
-import retrofit2.Call
-import retrofit2.Response
+import timber.log.Timber
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
+
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
+    private val viewModel by viewModels<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 야간모드 무시
+        // 야간 모드 무시
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        // 자동로그인 위한 객체 생성
+        // 자동 로그인 위한 객체 생성
         sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
@@ -47,45 +47,39 @@ class LoginActivity : AppCompatActivity() {
             loginWithServer()
         }
 
-        // 화면 터치로 키보드 내리기
-        binding.root.setOnClickListener {
-            hideKeyboard(this)
-        }
+        // 뷰모델 observer 설정
+        observeLoginResult()
+        observeLoginError()
 
-        // 자동로그인 설정
+        // 자동 로그인 설정
         autologin()
     }
 
     private fun loginWithServer() {
-        authService.login(
-            with(binding) {
-                LoginRequestDTO(
-                    etLoginId.text.toString(),
-                    etLoginPw.text.toString(),
-                )
-            }
-        ).enqueue(object : retrofit2.Callback<LoginResponseDTO> {
-            override fun onResponse(
-                call: Call<LoginResponseDTO>,
-                response: Response<LoginResponseDTO>
-            ) {
-                if (response.isSuccessful) {
-                    binding.root.makeToast(getString(R.string.toast_login_success))
+        viewModel.login(
+            binding.etLoginId.text.toString(), binding.etLoginPw.text.toString()
+        )
+    }
 
-                    val idFromServer = response.body()?.data?.id.toString()
-                    editor.putString("id", idFromServer)
-                    editor.apply()
+    private fun observeLoginResult() {
+        viewModel.loginResult.observe(this) { loginResult ->
+            binding.root.makeToast(getString(R.string.toast_login_success))
 
-                    val intent = Intent(binding.root.context, MainActivity::class.java)
-                    startActivityWithFlags(intent)
-                } else {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_login_dismatch))
-                }
-            }
-            override fun onFailure(call: Call<LoginResponseDTO>, t: Throwable) {
-                binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
-            }
-        })
+            // 자동 로그인 위해 통신 데이터 저장
+            val idFromServer = loginResult.data.id
+            editor.putString("id", idFromServer)
+            editor.apply()
+
+            val intent = Intent(binding.root.context, MainActivity::class.java)
+            startActivityWithFlags(intent)
+        }
+    }
+
+    private fun observeLoginError() {
+        viewModel.errorResult.observe(this) { errorResult ->
+            Timber.d("서버 통신 실패 : $errorResult")
+            binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
+        }
     }
 
     private fun autologin() {
@@ -105,8 +99,21 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun hideKeyboard(activity: Activity) {
-        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
+    // 키보드 바깥을 누르면 키보드 숨김 & 포커스 해제
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val focusView: View? = currentFocus
+        if (focusView != null) {
+            val rect = Rect()
+            focusView.getGlobalVisibleRect(rect)
+            val x = ev.x.toInt()
+            val y = ev.y.toInt()
+            if (!rect.contains(x, y)) {
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(focusView.windowToken, 0)
+                focusView.clearFocus()
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

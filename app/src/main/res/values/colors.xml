@@ -80,4 +80,7 @@
     <color name="teal_A200">#64ffda</color>
     <color name="teal_A400">#1de9b6</color>
     <color name="teal_A700">#00bfa5</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="half_transparent">#80FFFFFF</color>
 </resources>

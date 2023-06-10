@@ -1,7 +1,7 @@
 package org.android.go.sopt.presentation.follower
 
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import coil.transform.RoundedCornersTransformation
 import org.android.go.sopt.databinding.ItemFollowerBinding
 import org.android.go.sopt.data.remote.FollowerResponseDTO

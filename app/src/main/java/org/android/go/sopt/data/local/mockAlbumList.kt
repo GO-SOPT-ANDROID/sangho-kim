@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.album
+package org.android.go.sopt.data.local
 
 import org.android.go.sopt.R
 

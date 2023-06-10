@@ -1,105 +1,94 @@
 package org.android.go.sopt.presentation.auth
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.core.widget.doAfterTextChanged
+import androidx.activity.viewModels
 import org.android.go.sopt.R
-import org.android.go.sopt.data.remote.SignUpRequestDTO
-import org.android.go.sopt.data.remote.SignUpResponseDTO
 import org.android.go.sopt.databinding.ActivitySignUpBinding
-import org.android.go.sopt.module.AuthServicePool.authService
 import org.android.go.sopt.util.KeyboardVisibilityUtils
+import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
-import retrofit2.Call
-import retrofit2.Response
+import timber.log.Timber
 
-class SignUpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignUpBinding
+class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
+
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
+
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 텍스트 입력을 감지해서 조건 만족 시 버튼 활성화
-        binding.etSignUpId.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpPw.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpName.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
-        binding.etSignUpSkill.doAfterTextChanged {
-            binding.btnSignUp.isEnabled = checkUserSignIn()
-        }
+        binding.vm = viewModel
+        binding.lifecycleOwner = this
+
+        observeSignUpFormat()
+        observeSignUpResult()
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
-            signUpWithServer()
+            viewModel.signUp()
         }
 
-        // 화면 터치로 키보드 내리기
-        binding.root.setOnClickListener {
-            hideKeyboard(this)
-        }
+        // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
+        setKeyboardHeight()
+    }
 
-        // 받아온 클래스 활용해 스크롤뷰에 적용
-        keyboardVisibilityUtils = KeyboardVisibilityUtils(window,
-            onShowKeyboard = { keyboardHeight ->
+    private fun observeSignUpFormat() {
+        viewModel.isIdValid.observe(this) { isIdValid ->
+            binding.layoutSignUpId.error = if (isIdValid) "" else "아이디 형식이 올바르지 않습니다."
+            viewModel.checkButtonValid()
+        }
+        viewModel.isPwValid.observe(this) { isPwValid ->
+            binding.layoutSignUpPw.error = if (isPwValid) "" else "비밀번호 형식이 올바르지 않습니다."
+            viewModel.checkButtonValid()
+        }
+    }
+
+    private fun observeSignUpResult() {
+        viewModel.signUpResult.observe(this) { signUpResult ->
+            binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
+            if (!isFinishing) {
+                val intent = Intent(binding.root.context, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        viewModel.errorResult.observe(this) { errorResult ->
+            Timber.d("서버 통신 실패 : $errorResult")
+            binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
+        }
+    }
+
+    private fun setKeyboardHeight() {
+        keyboardVisibilityUtils =
+            KeyboardVisibilityUtils(window, onShowKeyboard = { keyboardHeight ->
                 binding.svSignUp.run {
                     smoothScrollTo(scrollX, scrollY + keyboardHeight)
                 }
             })
     }
 
-    private fun hideKeyboard(activity: Activity) {
-        val keyboard = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        keyboard.hideSoftInputFromWindow(activity.window.decorView.applicationWindowToken, 0)
-    }
-
-    private fun signUpWithServer() {
-        authService.signUp(
-            with(binding) {
-                SignUpRequestDTO(
-                    etSignUpId.text.toString(),
-                    etSignUpPw.text.toString(),
-                    etSignUpName.text.toString(),
-                    etSignUpSkill.text.toString()
-                )
+    // 키보드 바깥을 누르면 키보드 숨김 & 포커스 해제
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val focusView: View? = currentFocus
+        if (focusView != null) {
+            val rect = Rect()
+            focusView.getGlobalVisibleRect(rect)
+            val x = ev.x.toInt()
+            val y = ev.y.toInt()
+            if (!rect.contains(x, y)) {
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(focusView.windowToken, 0)
+                focusView.clearFocus()
             }
-        ).enqueue(object : retrofit2.Callback<SignUpResponseDTO> {
-            override fun onResponse(
-                call: Call<SignUpResponseDTO>,
-                response: Response<SignUpResponseDTO>
-            ) {
-                if (response.isSuccessful) {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_success))
-                    if (!isFinishing) {
-                        val intent = Intent(binding.root.context, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                } else {
-                    binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
-                }
-            }
-            override fun onFailure(call: Call<SignUpResponseDTO>, t: Throwable) {
-                binding.root.makeSnackBar(getString(R.string.snackbar_signup_failure))
-            }
-        })
-    }
-
-    private fun checkUserSignIn(): Boolean {
-        return binding.etSignUpId.text.length in 6..10
-                && binding.etSignUpPw.text.length in 8..12
-                && binding.etSignUpName.text.isNotBlank()
-                && binding.etSignUpSkill.text.isNotBlank()
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

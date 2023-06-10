@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.playlist
+package org.android.go.sopt.data.local
 
 import org.android.go.sopt.R
 import org.android.go.sopt.data.local.PlaylistSong
@@ -44,7 +44,7 @@ val mockPlayList = listOf<PlaylistSong>(
         id = 6,
         album = R.drawable.img_song_basecamp,
         artist = "basecamp",
-        title = "How to say (feat. Dvwn)",
+        title = "How to say (w/ Dvwn)",
     ),
     PlaylistSong(
         id = 7,
