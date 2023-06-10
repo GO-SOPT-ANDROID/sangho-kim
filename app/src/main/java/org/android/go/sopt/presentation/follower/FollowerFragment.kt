@@ -14,7 +14,6 @@ import timber.log.Timber
 class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragment_follower) {
 
     private val viewModel by viewModels<FollowerViewModel>()
-
     private val followerList = mutableListOf<FollowerResponseDTO.User>()
     private val followerAdapter = FollowerAdapter()
 
@@ -25,9 +24,24 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
 
         binding.rvFollower.adapter = followerAdapter
 
+        // 로딩창 띄우기
         startLoadingDialog()
 
         // 뷰모델 observer 설정
+        observeFollowerListResult()
+        observeFollowerListError()
+
+        // 서버 통신으로 User 리스트 받아오기
+        viewModel.addListFromServer(1)
+        viewModel.addListFromServer(2)
+    }
+
+    private fun startLoadingDialog() {
+        loadingDialogFragment = LoadingDialogFragment()
+        parentFragmentManager.beginTransaction().add(R.id.fcv_main, loadingDialogFragment).commit()
+    }
+
+    private fun observeFollowerListResult() {
         viewModel.followerResult.observe(viewLifecycleOwner) { followerResult ->
             val responseList = followerResult.data.toMutableList()
             responseList.let {
@@ -40,18 +54,12 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
                 loadingDialogFragment.dismiss()
             }
         }
+    }
+
+    private fun observeFollowerListError() {
         viewModel.errorResult.observe(viewLifecycleOwner) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))
         }
-
-        // 서버 통신으로 User 리스트 받아오기
-        viewModel.addListFromServer(1)
-        viewModel.addListFromServer(2)
-    }
-
-    private fun startLoadingDialog() {
-        loadingDialogFragment = LoadingDialogFragment()
-        parentFragmentManager.beginTransaction().add(R.id.fcv_main, loadingDialogFragment).commit()
     }
 }
