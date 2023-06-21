@@ -27,6 +27,7 @@
 
     <string name="menu_item_playlist">PLAYLIST</string>
     <string name="menu_item_search">SEARCH</string>
+    <string name="menu_item_add">ADD</string>
     <string name="menu_item_follower">FOLLOWER</string>
     <string name="menu_item_account">ACCOUNT</string>
     <string name="menu_item_album">ALBUM</string>
