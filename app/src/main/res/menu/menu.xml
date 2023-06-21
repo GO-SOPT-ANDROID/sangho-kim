@@ -20,8 +20,4 @@
         android:id="@+id/menu_follower"
         android:icon="@drawable/ic_menu_follower"
         android:title="@string/menu_item_follower" />
-    <item
-        android:id="@+id/menu_account"
-        android:icon="@drawable/ic_menu_account"
-        android:title="@string/menu_item_account" />
 </menu>
