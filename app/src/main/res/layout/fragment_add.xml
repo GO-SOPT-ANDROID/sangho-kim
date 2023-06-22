@@ -17,25 +17,25 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="80dp"
             android:background="@drawable/bg_grey_border"
-            android:padding="96dp"
-            android:src="@drawable/ic_add_image"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/TextAppearance.Pretendard.Normal"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_add_image"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
-            android:text="이미지를 추가해주세요"
-            android:textColor="#939393"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_blue_700"
+            android:text="+ 앨범 이미지 추가"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_add_image" />
-
-
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

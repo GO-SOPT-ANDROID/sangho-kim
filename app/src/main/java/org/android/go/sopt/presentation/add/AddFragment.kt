@@ -20,7 +20,7 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivAddImage.setOnClickListener{
+        binding.btnAddImage.setOnClickListener{
             launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
         }
 
