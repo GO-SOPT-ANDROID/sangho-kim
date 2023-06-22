@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.presentation.main.MainActivity
-import org.android.go.sopt.util.KeyboardVisibilityUtils
 import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
 import org.android.go.sopt.util.extension.makeToast
