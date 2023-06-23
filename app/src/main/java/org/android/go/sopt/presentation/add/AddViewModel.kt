@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.android.go.sopt.data.remote.AddResponseDTO
+import org.android.go.sopt.data.remote.LoginResponseDTO
 import org.android.go.sopt.module.AlbumServicePool.albumService
 import org.android.go.sopt.util.ContentUriRequestBody
 import retrofit2.Call
@@ -14,6 +16,12 @@ import timber.log.Timber
 
 
 class AddViewModel : ViewModel() {
+    private val _addResult: MutableLiveData<AddResponseDTO> = MutableLiveData()
+    val addResult: LiveData<AddResponseDTO> = _addResult
+
+    private val _errorResult: MutableLiveData<String> = MutableLiveData()
+    val errorResult: LiveData<String> = _errorResult
+
     val titleText: MutableLiveData<String> = MutableLiveData("")
     val singerText: MutableLiveData<String> = MutableLiveData("")
 
@@ -25,30 +33,30 @@ class AddViewModel : ViewModel() {
         _image.value = requestBody
     }
 
-    fun uploadMusic(id: String, title: String, singer: String) {
+    fun uploadMusic(id: String) {
         if (image.value == null) {
             Timber.e("아직 사진이 등록되지 않았습니다.")
         } else {
             val body = hashMapOf(
-                "title" to title.toRequestBody("text/plain".toMediaType()),
-                "singer" to singer.toRequestBody("text/plain".toMediaType())
+                "title" to titleText.toString().toRequestBody("text/plain".toMediaType()),
+                "singer" to singerText.toString().toRequestBody("text/plain".toMediaType())
             )
             val imageBody = image.value!!.toFormData()
 
             albumService.uploadMusic(id, body, imageBody)
-                .enqueue(object : Callback<Unit> {
+                .enqueue(object : Callback<AddResponseDTO> {
                 override fun onResponse(
-                    call: Call<Unit>, response: Response<Unit>
+                    call: Call<AddResponseDTO>, response: Response<AddResponseDTO>
                 ) {
                     if (response.isSuccessful) {
-                        Timber.e("업로드 성공")
+                        _addResult.value = response.body()
                     } else {
-                        Timber.e("업로드 실패")
+                        _errorResult.value = response.message()
                     }
                 }
 
-                override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Timber.e("업로드 실패")
+                override fun onFailure(call: Call<AddResponseDTO>, t: Throwable) {
+                    _errorResult.value = t.toString()
                 }
 
             })

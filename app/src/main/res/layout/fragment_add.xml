@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/bg_grey_border"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
@@ -35,7 +35,7 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/light_blue_700"
+            android:backgroundTint="@color/light_blue_A400"
             android:text="+ 앨범 이미지 추가"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
             android:id="@+id/tv_add_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:padding="2dp"
             android:text="@string/tv_add_title"
             android:textSize="20sp"
@@ -81,7 +81,7 @@
             android:id="@+id/tv_add_singer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:padding="2dp"
             android:text="@string/tv_add_singer"
             android:textSize="20sp"
@@ -110,6 +110,21 @@
                 android:text="@={vm.singerText}" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/light_blue_700"
+            android:paddingVertical="15dp"
+            android:text="재생목록에 추가"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_add_singer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
