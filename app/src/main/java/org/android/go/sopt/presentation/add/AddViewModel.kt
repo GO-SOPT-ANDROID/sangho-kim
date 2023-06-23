@@ -1,5 +1,6 @@
 package org.android.go.sopt.presentation.add
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,15 +36,13 @@ class AddViewModel : ViewModel() {
 
     fun uploadMusic(id: String) {
         if (image.value == null) {
-            Timber.e("아직 사진이 등록되지 않았습니다.")
+            Timber.d("아직 사진이 등록되지 않았습니다.")
         } else {
-            val body = hashMapOf(
-                "title" to titleText.toString().toRequestBody("text/plain".toMediaType()),
-                "singer" to singerText.toString().toRequestBody("text/plain".toMediaType())
-            )
+            val titleBody = titleText.toString().toRequestBody("text/plain".toMediaType())
+            val singerBody = singerText.toString().toRequestBody("text/plain".toMediaType())
             val imageBody = image.value!!.toFormData()
 
-            albumService.uploadMusic(id, body, imageBody)
+            albumService.uploadMusic(id, titleBody, singerBody, imageBody)
                 .enqueue(object : Callback<AddResponseDTO> {
                 override fun onResponse(
                     call: Call<AddResponseDTO>, response: Response<AddResponseDTO>

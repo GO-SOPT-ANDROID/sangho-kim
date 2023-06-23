@@ -12,7 +12,8 @@ interface AlbumService {
     @POST("music")
     fun uploadMusic(
         @Header("id") id: String,
-        @PartMap body: HashMap<String, RequestBody>,
+        @Part("title") title: RequestBody,
+        @Part("singer") singer: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<AddResponseDTO>
 }
