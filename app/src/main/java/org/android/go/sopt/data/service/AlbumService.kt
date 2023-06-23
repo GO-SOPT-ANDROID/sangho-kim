@@ -10,7 +10,7 @@ interface AlbumService {
     @Multipart
     @POST("upload")
     fun postImage(
-        @PartMap body: HashMap<String, RequestBody>,
-        @Part file: MultipartBody.Part?
+        @Part body: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part?
     ): Call<Unit>
 }
