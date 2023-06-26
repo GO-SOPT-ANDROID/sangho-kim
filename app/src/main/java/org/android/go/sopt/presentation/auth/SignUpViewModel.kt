@@ -5,9 +5,6 @@ import kotlinx.coroutines.launch
 import org.android.go.sopt.data.remote.SignUpRequestDTO
 import org.android.go.sopt.data.remote.SignUpResponseDTO
 import org.android.go.sopt.module.AuthServicePool
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {

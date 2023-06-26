@@ -1,19 +1,16 @@
 package org.android.go.sopt.presentation.add
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.android.go.sopt.data.remote.AddResponseDTO
-import org.android.go.sopt.data.remote.LoginResponseDTO
 import org.android.go.sopt.module.AlbumServicePool.albumService
 import org.android.go.sopt.util.ContentUriRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 
 class AddViewModel : ViewModel() {
@@ -35,15 +32,12 @@ class AddViewModel : ViewModel() {
     }
 
     fun uploadMusic(id: String) {
-        if (image.value == null) {
-            Timber.d("아직 사진이 등록되지 않았습니다.")
-        } else {
-            val titleBody = titleText.toString().toRequestBody("text/plain".toMediaType())
-            val singerBody = singerText.toString().toRequestBody("text/plain".toMediaType())
-            val imageBody = image.value!!.toFormData()
+        val titleBody = titleText.toString().toRequestBody("text/plain".toMediaType())
+        val singerBody = singerText.toString().toRequestBody("text/plain".toMediaType())
+        val imageBody = image.value!!.toFormData()
 
-            albumService.uploadMusic(id, titleBody, singerBody, imageBody)
-                .enqueue(object : Callback<AddResponseDTO> {
+        albumService.uploadMusic(id, titleBody, singerBody, imageBody)
+            .enqueue(object : Callback<AddResponseDTO> {
                 override fun onResponse(
                     call: Call<AddResponseDTO>, response: Response<AddResponseDTO>
                 ) {
@@ -59,6 +53,5 @@ class AddViewModel : ViewModel() {
                 }
 
             })
-        }
     }
 }

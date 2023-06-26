@@ -8,9 +8,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import coil.load
-import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAddBinding
+import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.util.ContentUriRequestBody
 import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeToast
@@ -37,8 +37,12 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
         }
 
         binding.btnAdd.setOnClickListener {
-            viewModel.uploadMusic("aaaaa1")
-            observeAddResult()
+            if (viewModel.image.value != null) {
+                viewModel.uploadMusic("aaaaa1")
+                observeAddResult()
+            } else {
+                view.makeToast("앨범 이미지를 추가해주세요")
+            }
         }
     }
 
