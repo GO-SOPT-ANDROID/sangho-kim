@@ -32,8 +32,8 @@ class AddViewModel : ViewModel() {
     }
 
     fun uploadMusic(id: String) {
-        val titleBody = titleText.toString().toRequestBody("text/plain".toMediaType())
-        val singerBody = singerText.toString().toRequestBody("text/plain".toMediaType())
+        val titleBody = titleText.value.toString().toRequestBody("text/plain".toMediaType())
+        val singerBody = singerText.value.toString().toRequestBody("text/plain".toMediaType())
         val imageBody = image.value!!.toFormData()
 
         albumService.uploadMusic(id, titleBody, singerBody, imageBody)

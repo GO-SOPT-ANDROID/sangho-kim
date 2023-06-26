@@ -25,6 +25,7 @@
                 android:id="@+id/iv_album"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toBottomOf="parent"

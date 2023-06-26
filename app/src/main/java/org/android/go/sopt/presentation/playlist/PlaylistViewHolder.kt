@@ -1,7 +1,8 @@
 package org.android.go.sopt.presentation.playlist
 
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.data.local.PlaylistSong
+import coil.load
+import org.android.go.sopt.data.remote.MusicData
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 
 class PlaylistViewHolder(val binding: ItemPlaylistSongBinding) :
@@ -9,9 +10,9 @@ class PlaylistViewHolder(val binding: ItemPlaylistSongBinding) :
 
     var chkBox = binding.checkBox
 
-    fun onBind(item: PlaylistSong) {
-        binding.ivAlbum.setImageDrawable(binding.root.context.getDrawable(item.album))
-        binding.tvArtist.text = item.artist
+    fun onBind(item: MusicData) {
+        binding.ivAlbum.load(item.url)
+        binding.tvArtist.text = item.singer
         binding.tvTitle.text = item.title
         binding.checkBox.isChecked = false
     }
