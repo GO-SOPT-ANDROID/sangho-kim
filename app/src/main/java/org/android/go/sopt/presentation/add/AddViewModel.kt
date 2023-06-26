@@ -51,7 +51,6 @@ class AddViewModel : ViewModel() {
                 override fun onFailure(call: Call<AddResponseDTO>, t: Throwable) {
                     _errorResult.value = t.toString()
                 }
-
             })
     }
 }

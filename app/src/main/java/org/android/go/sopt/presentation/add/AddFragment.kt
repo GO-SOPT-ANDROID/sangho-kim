@@ -59,5 +59,4 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
             binding.root.makeToast(getString(R.string.snackbar_server_failure))
         }
     }
-
 }
