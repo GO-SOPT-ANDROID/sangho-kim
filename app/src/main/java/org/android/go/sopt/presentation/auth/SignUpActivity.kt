@@ -28,11 +28,11 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.lifecycleOwner = this
 
         observeSignUpFormat()
-        observeSignUpResult()
 
         // SignUp 버튼 클릭
         binding.btnSignUp.setOnClickListener {
             viewModel.signUp()
+            observeSignUpResult()
         }
 
         // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정

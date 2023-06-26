@@ -38,7 +38,7 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
 
         binding.btnAdd.setOnClickListener {
             if (viewModel.image.value != null) {
-                viewModel.uploadMusic("aaaaa1")
+                viewModel.uploadMusic("qwqw12")
                 observeAddResult()
             } else {
                 view.makeToast("앨범 이미지를 추가해주세요")
