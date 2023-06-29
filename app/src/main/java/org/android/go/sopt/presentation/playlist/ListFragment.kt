@@ -9,6 +9,7 @@ import org.android.go.sopt.data.local.mockPlayListTitle
 import org.android.go.sopt.databinding.FragmentListBinding
 import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeSnackBar
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
 class ListFragment : BindingFragment<FragmentListBinding>(R.layout.fragment_list) {
@@ -24,7 +25,7 @@ class ListFragment : BindingFragment<FragmentListBinding>(R.layout.fragment_list
         observePlaylistResult()
         observePlaylistError()
 
-        binding.btnItemDelete.setOnClickListener {
+        binding.btnItemDelete.setOnSingleClickListener {
             // 삭제 API 있으면 여기다 적용
         }
     }

@@ -14,6 +14,7 @@ import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.util.ContentUriRequestBody
 import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeToast
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
 class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
@@ -32,14 +33,15 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-        binding.btnAddImage.setOnClickListener {
+        binding.btnAddImage.setOnSingleClickListener {
             launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        binding.btnAdd.setOnClickListener {
+        binding.btnAdd.setOnSingleClickListener {
             if (viewModel.image.value != null) {
                 viewModel.uploadMusic("qwqw12")
                 observeAddResult()
+                observeErrorResult()
             } else {
                 view.makeToast("앨범 이미지를 추가해주세요")
             }
@@ -54,6 +56,9 @@ class AddFragment : BindingFragment<FragmentAddBinding>(R.layout.fragment_add) {
                 replace(R.id.fcv_main, ListFragment())
             }
         }
+    }
+
+    private fun observeErrorResult() {
         viewModel.errorResult.observe(viewLifecycleOwner) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeToast(getString(R.string.snackbar_server_failure))

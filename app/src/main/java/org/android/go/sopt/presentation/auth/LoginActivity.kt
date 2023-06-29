@@ -15,6 +15,7 @@ import org.android.go.sopt.presentation.main.MainActivity
 import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
 import org.android.go.sopt.util.extension.makeToast
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
@@ -36,13 +37,13 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         editor = sharedPreferences.edit()
 
         // 회원가입 버튼 클릭 시 이동
-        binding.btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnSingleClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
         // 로그인 버튼 클릭 시 이동
-        binding.btnLogin.setOnClickListener {
+        binding.btnLogin.setOnSingleClickListener {
             loginWithServer()
         }
 

@@ -14,6 +14,7 @@ import org.android.go.sopt.presentation.auth.LoginActivity
 import org.android.go.sopt.presentation.dialog.LoadingDialogFragment
 import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeSnackBar
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
 class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragment_follower) {
@@ -42,7 +43,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         viewModel.addListFromServer(2)
 
         // 로그아웃 다이얼로그 제어할 이벤트 핸들러 설정
-        binding.btnLogout.setOnClickListener {
+        binding.btnLogout.setOnSingleClickListener {
             setAlertEventHandler()
             buildAlertDialog(alertEventHandler)
         }
