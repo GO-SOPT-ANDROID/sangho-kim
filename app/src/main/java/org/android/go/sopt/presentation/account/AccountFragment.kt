@@ -10,6 +10,7 @@ import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentAccountBinding
 import org.android.go.sopt.presentation.auth.LoginActivity
 import org.android.go.sopt.util.base.BindingFragment
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 
 class AccountFragment : BindingFragment<FragmentAccountBinding>(R.layout.fragment_account) {
 
@@ -18,7 +19,7 @@ class AccountFragment : BindingFragment<FragmentAccountBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogout.setOnClickListener {
+        binding.btnLogout.setOnSingleClickListener {
             // 알림 다이얼로그 제어할 이벤트 핸들러 설정
             setAlertEventHandler()
             // 알림 다이얼로그 생성
