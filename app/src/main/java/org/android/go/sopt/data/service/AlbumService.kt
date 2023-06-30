@@ -11,12 +11,12 @@ interface AlbumService {
 
     @Multipart
     @POST("music")
-    fun uploadMusic(
+    suspend fun postMusic(
         @Header("id") id: String,
         @Part("title") title: RequestBody,
         @Part("singer") singer: RequestBody,
         @Part image: MultipartBody.Part
-    ): Call<AddResponseDTO>
+    ): AddResponseDTO
 
     @GET("{id}/music")
     fun downloadMusic(
