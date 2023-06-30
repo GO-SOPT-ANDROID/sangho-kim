@@ -8,8 +8,8 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import org.android.go.sopt.R
-import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.presentation.auth.LoginActivity
 import org.android.go.sopt.presentation.dialog.LoadingDialogFragment
 import org.android.go.sopt.util.base.BindingFragment
@@ -24,7 +24,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
     private val followerAdapter = FollowerAdapter()
 
     private lateinit var loadingDialogFragment: LoadingDialogFragment
-    private lateinit var alertEventHandler : DialogInterface.OnClickListener
+    private lateinit var alertEventHandler: DialogInterface.OnClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +38,6 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         observeFollowerListResult()
         observeFollowerListError()
 
-        // 서버 통신으로 User 리스트 받아오기
         viewModel.addListFromServer(1)
         viewModel.addListFromServer(2)
 
@@ -80,7 +79,8 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         alertEventHandler = DialogInterface.OnClickListener { _, click ->
             if (click == DialogInterface.BUTTON_POSITIVE) {
 
-                val sharedPreferences = context?.getSharedPreferences("loginInfo",
+                val sharedPreferences = context?.getSharedPreferences(
+                    "loginInfo",
                     Context.MODE_PRIVATE
                 )
                 val editor = sharedPreferences?.edit()
@@ -95,7 +95,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         return alertEventHandler
     }
 
-    private fun buildAlertDialog(alertEventHandler : DialogInterface.OnClickListener) {
+    private fun buildAlertDialog(alertEventHandler: DialogInterface.OnClickListener) {
         AlertDialog.Builder(this.requireContext()).run {
             setTitle(resources.getString(R.string.dialog_account_logout_title))
             setMessage(resources.getString(R.string.dialog_account_logout_text))

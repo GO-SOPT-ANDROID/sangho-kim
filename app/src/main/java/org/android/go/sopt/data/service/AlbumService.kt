@@ -19,7 +19,7 @@ interface AlbumService {
     ): AddResponseDTO
 
     @GET("{id}/music")
-    fun downloadMusic(
+    suspend fun getMusic(
         @Path("id") id: String
-    ): Call<ListResponseDTO>
+    ): ListResponseDTO
 }
