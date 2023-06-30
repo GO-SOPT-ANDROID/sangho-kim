@@ -8,10 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.remote.SignUpRequestDTO
 import org.android.go.sopt.data.remote.SignUpResponseDTO
-import org.android.go.sopt.module.AuthServicePool
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.android.go.sopt.module.AuthServicePool.authService
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
@@ -38,9 +35,12 @@ class SignUpViewModel : ViewModel() {
     fun signUp() {
         viewModelScope.launch {
             runCatching {
-                AuthServicePool.authService.postSignUp(
+                authService.postSignUp(
                     SignUpRequestDTO(
-                        idText.value.toString(), pwText.value.toString(), nameText.value.toString(), skillText.value.toString()
+                        idText.value.toString(),
+                        pwText.value.toString(),
+                        nameText.value.toString(),
+                        skillText.value.toString()
                     )
                 )
             }.onSuccess {
