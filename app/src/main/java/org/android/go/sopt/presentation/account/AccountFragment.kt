@@ -14,7 +14,7 @@ import org.android.go.sopt.util.extension.setOnSingleClickListener
 
 class AccountFragment : BindingFragment<FragmentAccountBinding>(R.layout.fragment_account) {
 
-    private lateinit var alertEventHandler : DialogInterface.OnClickListener
+    private lateinit var alertEventHandler: DialogInterface.OnClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +44,7 @@ class AccountFragment : BindingFragment<FragmentAccountBinding>(R.layout.fragmen
         return alertEventHandler
     }
 
-    private fun buildAlertDialog(alertEventHandler : DialogInterface.OnClickListener) {
+    private fun buildAlertDialog(alertEventHandler: DialogInterface.OnClickListener) {
         AlertDialog.Builder(this.requireContext()).run {
             setTitle(resources.getString(R.string.dialog_account_logout_title))
             setMessage(resources.getString(R.string.dialog_account_logout_text))

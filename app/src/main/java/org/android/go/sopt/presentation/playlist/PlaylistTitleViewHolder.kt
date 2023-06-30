@@ -4,5 +4,4 @@ import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemPlaylistTitleBinding
 
 class PlaylistTitleViewHolder(private val binding: ItemPlaylistTitleBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-}
+    RecyclerView.ViewHolder(binding.root)

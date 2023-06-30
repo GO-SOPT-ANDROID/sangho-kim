@@ -10,8 +10,8 @@ import org.android.go.sopt.util.ItemDiffCallback
 class PlaylistAdapter :
     ListAdapter<MusicData, PlaylistViewHolder>(
         ItemDiffCallback<MusicData>(
-        onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.url == new.url})
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old.url == new.url })
     ) {
 
     private var selectionList = mutableListOf<Int>()

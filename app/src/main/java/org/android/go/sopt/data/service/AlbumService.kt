@@ -4,7 +4,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.android.go.sopt.data.remote.AddResponseDTO
 import org.android.go.sopt.data.remote.ListResponseDTO
-import retrofit2.Call
 import retrofit2.http.*
 
 interface AlbumService {

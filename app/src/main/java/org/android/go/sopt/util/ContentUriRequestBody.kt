@@ -47,6 +47,7 @@ class ContentUriRequestBody(
             sink.writeAll(source)
         }
     }
+
     // 얘는 SerialName을 붙여서 이름을 명시해주지 않았죠? 여기 밑에서 이름을 정해줍니다 !
     fun toFormData() = MultipartBody.Part.createFormData("image", getFileName(), this)
 }

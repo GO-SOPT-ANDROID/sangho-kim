@@ -5,9 +5,9 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import org.android.go.sopt.R
+import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.add.AddFragment
 import org.android.go.sopt.presentation.album.AlbumFragment
-import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.follower.FollowerFragment
 import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.presentation.search.SearchFragment
@@ -54,18 +54,21 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     }
                     changeFragment(albumFragment)
                 }
+
                 R.id.menu_add -> {
                     if (!::addFragment.isInitialized) {
                         addFragment = AddFragment()
                     }
                     changeFragment(AddFragment())
                 }
+
                 R.id.menu_search -> {
                     if (!::searchFragment.isInitialized) {
                         searchFragment = SearchFragment()
                     }
                     changeFragment(SearchFragment())
                 }
+
                 R.id.menu_follower -> {
                     if (!::followerFragment.isInitialized) {
                         followerFragment = FollowerFragment()

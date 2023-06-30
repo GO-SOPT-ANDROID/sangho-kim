@@ -28,10 +28,11 @@ class KeyboardVisibilityUtils(
             // 이전에 보여준 화면 height가 현재 화면 height + 최소 키보드 크기 값 보다 크면 키보드가 올라온 것으로 보고 키보드가 보였다는 이벤트를 전달
             if (lastVisibleDecorViewHeight > visibleDecorViewHeight + MIN_KEYBOARD_HEIGHT_PX) {
                 // Calculate current keyboard height (this includes also navigation bar height when in fullscreen mode).
-                val currentKeyboardHeight = window.decorView.height - windowVisibleDisplayFrame.bottom
+                val currentKeyboardHeight =
+                    window.decorView.height - windowVisibleDisplayFrame.bottom
                 // Notify listener about keyboard being shown.
                 onShowKeyboard?.invoke(currentKeyboardHeight)
-            // 이전에 보여준 화면 height + 최소 키보드 크기 값이 현재 화면 height 보다 작으면 키보드가 내려간 것으로 보고 키보드가 사라졌다는 이벤트를 전달
+                // 이전에 보여준 화면 height + 최소 키보드 크기 값이 현재 화면 height 보다 작으면 키보드가 내려간 것으로 보고 키보드가 사라졌다는 이벤트를 전달
             } else if (lastVisibleDecorViewHeight + MIN_KEYBOARD_HEIGHT_PX < visibleDecorViewHeight) {
                 // Notify listener about keyboard being hidden.
                 onHideKeyboard?.invoke()
