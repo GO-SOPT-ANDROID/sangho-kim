@@ -1,21 +1,19 @@
-package org.android.go.sopt.data.remote
+package org.android.go.sopt.data.entity.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginResponseDTO(
+data class SignUpResponseDTO(
     @SerialName("status")
     val status: Int,
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: InfoData,
+    val data: SignUpData,
 ) {
     @Serializable
-    data class InfoData(
-        @SerialName("id")
-        val id: String,
+    data class SignUpData(
         @SerialName("name")
         val name: String,
         @SerialName("skill")

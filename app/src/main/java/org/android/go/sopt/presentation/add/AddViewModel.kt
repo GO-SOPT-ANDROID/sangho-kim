@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.android.go.sopt.data.remote.AddResponseDTO
-import org.android.go.sopt.module.AlbumServicePool.albumService
+import org.android.go.sopt.data.entity.remote.AddResponseDTO
+import org.android.go.sopt.di.AlbumServicePool.albumService
 import org.android.go.sopt.util.ContentUriRequestBody
 
 

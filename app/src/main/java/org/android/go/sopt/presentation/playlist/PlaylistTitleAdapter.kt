@@ -3,7 +3,7 @@ package org.android.go.sopt.presentation.playlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import org.android.go.sopt.data.local.PlaylistTitle
+import org.android.go.sopt.data.entity.local.PlaylistTitle
 import org.android.go.sopt.databinding.ItemPlaylistTitleBinding
 import org.android.go.sopt.util.ItemDiffCallback
 

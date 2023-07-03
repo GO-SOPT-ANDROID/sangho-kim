@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import org.android.go.sopt.R
-import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
 import org.android.go.sopt.databinding.FragmentFollowerBinding
 import org.android.go.sopt.presentation.auth.LoginActivity
 import org.android.go.sopt.presentation.dialog.LoadingDialogFragment

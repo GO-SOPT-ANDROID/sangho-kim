@@ -6,9 +6,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.android.go.sopt.data.remote.SignUpRequestDTO
-import org.android.go.sopt.data.remote.SignUpResponseDTO
-import org.android.go.sopt.module.AuthServicePool.authService
+import org.android.go.sopt.data.entity.remote.SignUpRequestDTO
+import org.android.go.sopt.data.entity.remote.SignUpResponseDTO
+import org.android.go.sopt.di.AuthServicePool.authService
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {

@@ -1,4 +1,4 @@
-package org.android.go.sopt.data.local
+package org.android.go.sopt.data.entity.local
 
 data class PlaylistTitle(
     val id: Int,

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import org.android.go.sopt.R
-import org.android.go.sopt.data.local.mockPlayListTitle
+import org.android.go.sopt.data.entity.local.mockPlayListTitle
 import org.android.go.sopt.databinding.FragmentListBinding
 import org.android.go.sopt.util.base.BindingFragment
 import org.android.go.sopt.util.extension.makeSnackBar

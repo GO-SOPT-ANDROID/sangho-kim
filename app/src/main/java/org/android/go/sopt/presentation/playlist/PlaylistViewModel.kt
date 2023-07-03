@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.android.go.sopt.data.remote.ListResponseDTO
-import org.android.go.sopt.module.AlbumServicePool.albumService
+import org.android.go.sopt.data.entity.remote.ListResponseDTO
+import org.android.go.sopt.di.AlbumServicePool.albumService
 
 class PlaylistViewModel : ViewModel() {
     private val _playlistResult: MutableLiveData<ListResponseDTO> = MutableLiveData()

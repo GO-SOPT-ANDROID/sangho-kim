@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.android.go.sopt.data.remote.FollowerResponseDTO
-import org.android.go.sopt.module.FollowerServicePool.followerService
+import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
+import org.android.go.sopt.di.FollowerServicePool.followerService
 
 class FollowerViewModel : ViewModel() {
     private val _followerResult: MutableLiveData<FollowerResponseDTO> = MutableLiveData()

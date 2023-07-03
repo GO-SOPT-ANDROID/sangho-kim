@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.android.go.sopt.data.remote.LoginRequestDTO
-import org.android.go.sopt.data.remote.LoginResponseDTO
-import org.android.go.sopt.module.AuthServicePool.authService
+import org.android.go.sopt.data.entity.remote.LoginRequestDTO
+import org.android.go.sopt.data.entity.remote.LoginResponseDTO
+import org.android.go.sopt.di.AuthServicePool.authService
 
 class LoginViewModel : ViewModel() {
     private val _loginResult: MutableLiveData<LoginResponseDTO> = MutableLiveData()

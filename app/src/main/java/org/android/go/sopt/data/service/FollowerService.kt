@@ -1,6 +1,6 @@
 package org.android.go.sopt.data.service
 
-import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 
