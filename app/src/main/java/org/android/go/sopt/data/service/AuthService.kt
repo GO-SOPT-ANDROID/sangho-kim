@@ -1,22 +1,21 @@
 package org.android.go.sopt.data.service
 
-import org.android.go.sopt.data.remote.LoginRequestDTO
-import org.android.go.sopt.data.remote.LoginResponseDTO
-import org.android.go.sopt.data.remote.SignUpRequestDTO
-import org.android.go.sopt.data.remote.SignUpResponseDTO
-import retrofit2.Call
+import org.android.go.sopt.data.entity.remote.LoginRequestDTO
+import org.android.go.sopt.data.entity.remote.LoginResponseDTO
+import org.android.go.sopt.data.entity.remote.SignUpRequestDTO
+import org.android.go.sopt.data.entity.remote.SignUpResponseDTO
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthService {
 
     @POST("sign-up")
-    fun signUp(
+    suspend fun postSignUp(
         @Body request: SignUpRequestDTO,
-    ): Call<SignUpResponseDTO>
+    ): SignUpResponseDTO
 
     @POST("sign-in")
-    fun login(
+    suspend fun postLogin(
         @Body request: LoginRequestDTO,
-    ): Call<LoginResponseDTO>
+    ): LoginResponseDTO
 }

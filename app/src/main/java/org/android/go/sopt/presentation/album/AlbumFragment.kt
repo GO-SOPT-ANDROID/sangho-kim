@@ -3,7 +3,7 @@ package org.android.go.sopt.presentation.album
 import android.os.Bundle
 import android.view.View
 import org.android.go.sopt.R
-import org.android.go.sopt.data.local.mockAlbumList
+import org.android.go.sopt.data.entity.local.mockAlbumList
 import org.android.go.sopt.databinding.FragmentAlbumBinding
 import org.android.go.sopt.util.base.BindingFragment
 

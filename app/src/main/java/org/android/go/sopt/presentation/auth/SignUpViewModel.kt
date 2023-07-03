@@ -2,14 +2,13 @@ package org.android.go.sopt.presentation.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.data.remote.SignUpRequestDTO
-import org.android.go.sopt.data.remote.SignUpResponseDTO
-import org.android.go.sopt.module.AuthServicePool
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import org.android.go.sopt.data.entity.remote.SignUpRequestDTO
+import org.android.go.sopt.data.entity.remote.SignUpResponseDTO
+import org.android.go.sopt.di.AuthServicePool.authService
 import java.util.regex.Pattern
 
 class SignUpViewModel : ViewModel() {
@@ -24,36 +23,34 @@ class SignUpViewModel : ViewModel() {
     val nameText: MutableLiveData<String> = MutableLiveData("")
     val skillText: MutableLiveData<String> = MutableLiveData("")
 
-    val isIdValid: LiveData<Boolean> = Transformations.map(idText) { id ->
+    val isIdValid: LiveData<Boolean> = idText.map { id ->
         checkIdValid(id)
     }
-    val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { pw ->
+    val isPwValid: LiveData<Boolean> = pwText.map { pw ->
         checkPwValid(pw)
     }
 
     val isButtonValid: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun signUp() {
-        AuthServicePool.authService.signUp(
-            SignUpRequestDTO(
-                idText.toString(), pwText.toString(), nameText.toString(), skillText.toString()
-            )
-        ).enqueue(object : Callback<SignUpResponseDTO> {
-            override fun onResponse(
-                call: Call<SignUpResponseDTO>, response: Response<SignUpResponseDTO>
-            ) {
-                if (response.isSuccessful) {
-                    _signUpResult.value = response.body()
-                } else {
-                    _errorResult.value = response.message()
-                }
+        viewModelScope.launch {
+            runCatching {
+                authService.postSignUp(
+                    SignUpRequestDTO(
+                        idText.value.toString(),
+                        pwText.value.toString(),
+                        nameText.value.toString(),
+                        skillText.value.toString()
+                    )
+                )
+            }.onSuccess {
+                _signUpResult.value = it
+            }.onFailure {
+                _errorResult.value = it.message
             }
-
-            override fun onFailure(call: Call<SignUpResponseDTO>, t: Throwable) {
-                _errorResult.value = t.toString()
-            }
-        })
+        }
     }
+
 
     private fun checkIdValid(id: String): Boolean {
         if (id == "") return true

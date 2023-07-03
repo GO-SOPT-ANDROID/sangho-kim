@@ -4,22 +4,24 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
-import org.android.go.sopt.presentation.account.AccountFragment
-import org.android.go.sopt.presentation.album.AlbumFragment
 import org.android.go.sopt.databinding.ActivityMainBinding
+import org.android.go.sopt.presentation.add.AddFragment
+import org.android.go.sopt.presentation.album.AlbumFragment
 import org.android.go.sopt.presentation.follower.FollowerFragment
 import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.presentation.search.SearchFragment
 import org.android.go.sopt.util.base.BindingActivity
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var listFragment: ListFragment
     private lateinit var albumFragment: AlbumFragment
     private lateinit var searchFragment: SearchFragment
     private lateinit var followerFragment: FollowerFragment
-    private lateinit var accountFragment: AccountFragment
+    private lateinit var addFragment: AddFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,23 +56,26 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     }
                     changeFragment(albumFragment)
                 }
+
+                R.id.menu_add -> {
+                    if (!::addFragment.isInitialized) {
+                        addFragment = AddFragment()
+                    }
+                    changeFragment(AddFragment())
+                }
+
                 R.id.menu_search -> {
                     if (!::searchFragment.isInitialized) {
                         searchFragment = SearchFragment()
                     }
                     changeFragment(SearchFragment())
                 }
+
                 R.id.menu_follower -> {
                     if (!::followerFragment.isInitialized) {
                         followerFragment = FollowerFragment()
                     }
                     changeFragment(FollowerFragment())
-                }
-                R.id.menu_account -> {
-                    if (!::accountFragment.isInitialized) {
-                        accountFragment = AccountFragment()
-                    }
-                    changeFragment(AccountFragment())
                 }
             }
             true

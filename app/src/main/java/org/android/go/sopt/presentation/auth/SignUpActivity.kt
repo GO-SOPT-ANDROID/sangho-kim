@@ -12,6 +12,7 @@ import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.KeyboardVisibilityUtils
 import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.extension.makeSnackBar
+import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
@@ -28,11 +29,12 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.lifecycleOwner = this
 
         observeSignUpFormat()
-        observeSignUpResult()
 
         // SignUp 버튼 클릭
-        binding.btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnSingleClickListener {
             viewModel.signUp()
+            observeSignUpResult()
+            observeSignUpError()
         }
 
         // 키보드 높이만큼 EditText 올려 버튼이 가리지 않도록 설정
@@ -59,6 +61,9 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                 finish()
             }
         }
+    }
+
+    private fun observeSignUpError() {
         viewModel.errorResult.observe(this) { errorResult ->
             Timber.d("서버 통신 실패 : $errorResult")
             binding.root.makeSnackBar(getString(R.string.snackbar_server_failure))

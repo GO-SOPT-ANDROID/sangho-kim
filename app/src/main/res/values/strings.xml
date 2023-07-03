@@ -21,12 +21,14 @@
 
     <string name="snackbar_signup_success">회원가입에 성공하였습니다.</string>
     <string name="snackbar_server_failure">서버와의 통신에 실패하였습니다.</string>
+    <string name="snackbar_add_success">재생목록 추가에 성공하였습니다.</string>
     <string name="toast_login_success">로그인에 성공하였습니다.</string>
     <string name="toast_login_autologin">자동 로그인에 성공하였습니다.</string>
     <string name="snackbar_login_dismatch">회원가입 정보와 일치하지 않습니다.</string>
 
     <string name="menu_item_playlist">PLAYLIST</string>
     <string name="menu_item_search">SEARCH</string>
+    <string name="menu_item_add">ADD</string>
     <string name="menu_item_follower">FOLLOWER</string>
     <string name="menu_item_account">ACCOUNT</string>
     <string name="menu_item_album">ALBUM</string>
@@ -39,5 +41,7 @@
     <string name="dialog_account_logout_title">로그아웃 하시겠습니까?</string>
     <string name="dialog_account_logout_text">자동로그인이 해제됩니다</string>
     <string name="btn_account_logout">LOGOUT</string>
+    <string name="tv_add_title">제목</string>
+    <string name="tv_add_singer">가수</string>
 
 </resources>

@@ -3,15 +3,16 @@ package org.android.go.sopt.presentation.follower
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
 import org.android.go.sopt.databinding.ItemFollowerBinding
-import org.android.go.sopt.data.remote.FollowerResponseDTO
+import org.android.go.sopt.domain.model.FollowerModel
 import org.android.go.sopt.util.ItemDiffCallback
 
 class FollowerAdapter :
-    ListAdapter<FollowerResponseDTO.User, FollowerViewHolder>(
-        ItemDiffCallback<FollowerResponseDTO.User>(
-        onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.id == new.id })
+    ListAdapter<FollowerModel, FollowerViewHolder>(
+        ItemDiffCallback<FollowerModel>(
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old.id == new.id })
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {

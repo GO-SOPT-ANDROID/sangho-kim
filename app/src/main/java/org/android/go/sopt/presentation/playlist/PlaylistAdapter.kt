@@ -3,18 +3,18 @@ package org.android.go.sopt.presentation.playlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import org.android.go.sopt.data.local.PlaylistSong
+import org.android.go.sopt.data.entity.remote.MusicData
 import org.android.go.sopt.databinding.ItemPlaylistSongBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
 class PlaylistAdapter :
-    ListAdapter<PlaylistSong, PlaylistViewHolder>(
-        ItemDiffCallback<PlaylistSong>(
-        onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.id == new.id })
+    ListAdapter<MusicData, PlaylistViewHolder>(
+        ItemDiffCallback<MusicData>(
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old.url == new.url })
     ) {
 
-    var selectionList = mutableListOf<Int>()
+    private var selectionList = mutableListOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {
         val binding: ItemPlaylistSongBinding =

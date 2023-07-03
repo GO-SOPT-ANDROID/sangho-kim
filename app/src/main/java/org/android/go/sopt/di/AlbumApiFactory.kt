@@ -1,4 +1,4 @@
-package org.android.go.sopt.module
+package org.android.go.sopt.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -7,11 +7,11 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.android.go.sopt.BuildConfig
-import org.android.go.sopt.data.service.FollowerService
+import org.android.go.sopt.data.service.AlbumService
 import retrofit2.Retrofit
 
-object FollowerApiFactory {
-    private const val BASE_URL = BuildConfig.REQRES_BASE_URL
+object AlbumApiFactory {
+    private const val BASE_URL = BuildConfig.AUTH_BASE_URL
 
     private val client by lazy {
         OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
@@ -22,14 +22,16 @@ object FollowerApiFactory {
 
     @OptIn(ExperimentalSerializationApi::class)
     val retrofit: Retrofit by lazy {
-        Retrofit.Builder().baseUrl(BASE_URL)
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-            .client(client).build()
+            .client(client)
+            .build()
     }
 
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
 }
 
-object FollowerServicePool {
-    val followerService = FollowerApiFactory.create<FollowerService>()
+object AlbumServicePool {
+    val albumService = AlbumApiFactory.create<AlbumService>()
 }
