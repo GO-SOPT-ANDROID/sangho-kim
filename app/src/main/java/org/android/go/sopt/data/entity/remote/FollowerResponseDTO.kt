@@ -2,6 +2,7 @@ package org.android.go.sopt.data.entity.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.android.go.sopt.domain.model.FollowerModel
 
 @Serializable
 data class FollowerResponseDTO(
@@ -39,4 +40,13 @@ data class FollowerResponseDTO(
         @SerialName("text")
         val text: String
     )
+
+    fun FollowerResponseDTO.toFollowerModel() : List<FollowerModel> = data.map { user ->
+        FollowerModel(
+            id = user.id,
+            name = "${user.firstName} ${user.lastName}",
+            email = user.email,
+            image = user.avatar
+        )
+    }
 }
