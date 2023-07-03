@@ -2,8 +2,8 @@ package org.android.go.sopt.presentation.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.entity.remote.SignUpRequestDTO
@@ -23,10 +23,10 @@ class SignUpViewModel : ViewModel() {
     val nameText: MutableLiveData<String> = MutableLiveData("")
     val skillText: MutableLiveData<String> = MutableLiveData("")
 
-    val isIdValid: LiveData<Boolean> = Transformations.map(idText) { id ->
+    val isIdValid: LiveData<Boolean> = idText.map { id ->
         checkIdValid(id)
     }
-    val isPwValid: LiveData<Boolean> = Transformations.map(pwText) { pw ->
+    val isPwValid: LiveData<Boolean> = pwText.map { pw ->
         checkPwValid(pw)
     }
 

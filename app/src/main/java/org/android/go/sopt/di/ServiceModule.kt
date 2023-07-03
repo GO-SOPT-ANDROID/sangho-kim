@@ -5,8 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.android.go.sopt.data.service.FollowerService
-import org.android.go.sopt.di.RetrofitModule.Retrofit2
-import org.android.go.sopt.util.BaseUrlType
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -16,6 +14,6 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun providesFollowerService(@Retrofit2(BaseUrlType.REQRES) retrofit: Retrofit): FollowerService =
+    fun providesFollowerService(retrofit: Retrofit): FollowerService =
         retrofit.create(FollowerService::class.java)
 }

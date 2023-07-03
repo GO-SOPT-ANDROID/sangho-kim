@@ -4,21 +4,27 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
-import org.android.go.sopt.di.FollowerServicePool.followerService
+import org.android.go.sopt.domain.model.FollowerModel
+import org.android.go.sopt.domain.repository.FollowerRepository
+import javax.inject.Inject
 
-class FollowerViewModel : ViewModel() {
-    private val _followerResult: MutableLiveData<FollowerResponseDTO> = MutableLiveData()
-    val followerResult: LiveData<FollowerResponseDTO> = _followerResult
+@HiltViewModel
+class FollowerViewModel @Inject constructor(
+    private val followerRepository: FollowerRepository
+) : ViewModel() {
+
+    private val _followerResult: MutableLiveData<List<FollowerModel>> = MutableLiveData()
+    val followerResult: LiveData<List<FollowerModel>> = _followerResult
 
     private val _errorResult: MutableLiveData<String> = MutableLiveData()
     val errorResult: LiveData<String> = _errorResult
 
-    fun addListFromServer(page: Int) {
+    fun addListFromServer() {
         viewModelScope.launch {
             runCatching {
-                followerService.getList(page)
+                followerRepository.getData()
             }.onSuccess {
                 _followerResult.value = it
             }.onFailure {

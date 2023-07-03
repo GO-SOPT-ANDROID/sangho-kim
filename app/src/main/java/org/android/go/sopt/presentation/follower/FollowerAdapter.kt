@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
 import org.android.go.sopt.databinding.ItemFollowerBinding
+import org.android.go.sopt.domain.model.FollowerModel
 import org.android.go.sopt.util.ItemDiffCallback
 
 class FollowerAdapter :
-    ListAdapter<FollowerResponseDTO.User, FollowerViewHolder>(
-        ItemDiffCallback<FollowerResponseDTO.User>(
+    ListAdapter<FollowerModel, FollowerViewHolder>(
+        ItemDiffCallback<FollowerModel>(
             onContentsTheSame = { old, new -> old == new },
             onItemsTheSame = { old, new -> old.id == new.id })
     ) {

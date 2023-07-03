@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.data.entity.remote.FollowerResponseDTO
 import org.android.go.sopt.databinding.FragmentFollowerBinding
@@ -17,6 +18,7 @@ import org.android.go.sopt.util.extension.makeSnackBar
 import org.android.go.sopt.util.extension.setOnSingleClickListener
 import timber.log.Timber
 
+@AndroidEntryPoint
 class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragment_follower) {
 
     private val viewModel by viewModels<FollowerViewModel>()
@@ -38,8 +40,7 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
         observeFollowerListResult()
         observeFollowerListError()
 
-        viewModel.addListFromServer(1)
-        viewModel.addListFromServer(2)
+        viewModel.addListFromServer()
 
         // 로그아웃 다이얼로그 제어할 이벤트 핸들러 설정
         binding.btnLogout.setOnSingleClickListener {
@@ -55,16 +56,8 @@ class FollowerFragment : BindingFragment<FragmentFollowerBinding>(R.layout.fragm
 
     private fun observeFollowerListResult() {
         viewModel.followerResult.observe(viewLifecycleOwner) { followerResult ->
-            val responseList = followerResult.data.toMutableList()
-            responseList.let {
-                followerList.addAll(responseList)
-            }
-            followerAdapter.submitList(followerList.toList())
-
-            // 두 페이지의 12명이 모두 들어올 때까지 보이도록 설정
-            if (followerList.size == 12) {
-                loadingDialogFragment.dismiss()
-            }
+            followerAdapter.submitList(followerResult)
+            loadingDialogFragment.dismiss()
         }
     }
 

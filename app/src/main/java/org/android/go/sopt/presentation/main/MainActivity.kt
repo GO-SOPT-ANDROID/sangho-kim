@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.presentation.add.AddFragment
@@ -13,6 +14,7 @@ import org.android.go.sopt.presentation.playlist.ListFragment
 import org.android.go.sopt.presentation.search.SearchFragment
 import org.android.go.sopt.util.base.BindingActivity
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var listFragment: ListFragment
