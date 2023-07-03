@@ -41,7 +41,7 @@ data class FollowerResponseDTO(
         val text: String
     )
 
-    fun FollowerResponseDTO.toFollowerModel() : List<FollowerModel> = data.map { user ->
+    fun toFollowerModel() : List<FollowerModel> = data.map { user ->
         FollowerModel(
             id = user.id,
             name = "${user.firstName} ${user.lastName}",
